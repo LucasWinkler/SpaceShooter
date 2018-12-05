@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using SpaceShooter.Camera;
+using SpaceShooter.Controllers;
 using SpaceShooter.Input;
 using SpaceShooter.Sprites;
 using System;
@@ -22,6 +23,8 @@ namespace SpaceShooter.Screens
         // The controller which handles the players input
         private readonly PlayerController playerController;
 
+        private readonly BulletController bulletController;
+
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -39,6 +42,7 @@ namespace SpaceShooter.Screens
                 }));
 
             this.Components.Add(playerController = new PlayerController(GameRoot, player));
+            this.Components.Add(bulletController = new BulletController(GameRoot));
         }
 
         /// <summary>
@@ -82,6 +86,7 @@ namespace SpaceShooter.Screens
         /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)
         {
+            
             base.Draw(gameTime);
         }
     }

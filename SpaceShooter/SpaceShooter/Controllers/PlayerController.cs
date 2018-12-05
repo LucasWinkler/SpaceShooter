@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using SpaceShooter.Controllers;
 using SpaceShooter.Input;
 
 namespace SpaceShooter.Sprites
@@ -13,6 +14,7 @@ namespace SpaceShooter.Sprites
         private readonly KeyHandler keyHandler;
 
         private Vector2 direction;
+        private Vector2 newPosition;
 
         /// <summary>
         /// Construct the player controller.
@@ -32,19 +34,30 @@ namespace SpaceShooter.Sprites
         /// <param name="gameTime"></param>
         public void Move(GameTime gameTime)
         {
+            // Normalize the vector if the length is > 0 to prevent diagonal movement from increasing the overall player speed
             if (direction.Length() > 0)
                 direction.Normalize();
 
             player.Velocity = direction * player.Speed;
-            player.Position += player.Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            // Calculate the new position
+            newPosition = player.Position + player.Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            // Make sure the new position is within the game screen
+            newPosition.X = MathHelper.Clamp(newPosition.X, 0, GameSettings.GAME_WIDTH - player.Texture.Width);
+            newPosition.Y = MathHelper.Clamp(newPosition.Y, 0, GameSettings.GAME_HEIGHT - player.Texture.Height);
+
+            // Finally set the players position to the new position
+            player.Position = newPosition;
         }
+
 
         /// <summary>
         /// Shoots a bullet from the player
         /// </summary>
         public void Shoot()
         {
-            // Shoots as long as the timer has passed the delay and the max shells hasn't been reached
+            // Shoots as long as the timer has passed the delay
             if (player.ShootTimer >= player.ShootDelay)
             {
                 // Create a new bullet and give it the game instance as well as the player as a parent

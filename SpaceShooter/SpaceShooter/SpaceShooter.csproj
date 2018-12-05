@@ -42,6 +42,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Camera\Camera2D.cs" />
+    <Compile Include="Collision\CollisionManager.cs" />
+    <Compile Include="Controllers\BulletController.cs" />
     <Compile Include="GameRoot.cs" />
     <Compile Include="GameSettings.cs" />
     <Compile Include="Input\KeyBinds.cs" />
@@ -56,8 +58,9 @@
     <Compile Include="Screens\StartScreen.cs" />
     <Compile Include="Spawners\EnemySpawner.cs" />
     <Compile Include="Sprites\Bullet.cs" />
+    <Compile Include="Sprites\Enemy.cs" />
     <Compile Include="Sprites\Player.cs" />
-    <Compile Include="Sprites\PlayerController.cs" />
+    <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="Sprites\Ship.cs" />
     <Compile Include="Sprites\Sprite.cs" />
   </ItemGroup>
