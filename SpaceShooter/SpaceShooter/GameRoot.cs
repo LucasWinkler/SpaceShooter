@@ -75,6 +75,8 @@ namespace SpaceShooter
                 new Resource(ResourceType.Texture, "AdvancedGreenEnemy", "GFX/Enemy_01/Enemy01_Green_Frame_1"),
                 new Resource(ResourceType.Texture, "AdvancedRedEnemy", "GFX/Enemy_01/Enemy01_Red_Frame_1"),
                 new Resource(ResourceType.Texture, "AdvancedTealEnemy", "GFX/Enemy_01/Enemy01_Teal_Frame_1"),
+
+                new Resource(ResourceType.Texture, "SmallPlasmaBullet", "GFX/Bullets/Plasma_Small"),
             });
 
             /* This should probably be called in this.LoadContent()

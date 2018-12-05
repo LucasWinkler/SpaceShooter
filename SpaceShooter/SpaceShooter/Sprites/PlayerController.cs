@@ -8,10 +8,10 @@ namespace SpaceShooter.Sprites
     /// </summary>
     public class PlayerController : GameComponent
     {
+        private GameRoot game;
         private readonly Player player;
         private readonly KeyHandler keyHandler;
 
-        private Vector2 tempPosition;
         private Vector2 direction;
 
         /// <summary>
@@ -21,6 +21,7 @@ namespace SpaceShooter.Sprites
         /// <param name="player"></param>
         public PlayerController(GameRoot game, Player player) : base(game)
         {
+            this.game = game;
             this.player = player;
             this.keyHandler = new KeyHandler();
         }
@@ -39,9 +40,38 @@ namespace SpaceShooter.Sprites
         }
 
         /// <summary>
+        /// Shoots a bullet from the player
+        /// </summary>
+        public void Shoot()
+        {
+            // Shoots as long as the timer has passed the delay and the max shells hasn't been reached
+            if (player.ShootTimer >= player.ShootDelay)
+            {
+                // Create a new bullet and give it the game instance as well as the player as a parent
+                var bullet = new Bullet(game, player);
+
+                // Set the startPosition to the players position
+                var startPosition = player.Position;
+
+                // Modifiy the starting position to be infront of the player and centered
+                startPosition.X += (player.Texture.Width / 2) - (bullet.Texture.Width / 2);
+                startPosition.Y -= bullet.Texture.Height;
+
+                // Give the bullet the new position
+                bullet.Position = startPosition;
+
+                // Add the bullet to the components to be updated and drawn
+                game.Components.Add(bullet);
+
+                // Reset the shooting timer
+                player.ShootTimer = 0;
+            }
+        }
+
+        /// <summary>
         /// Handle the players input.
         /// </summary>
-        public void HandleInput()
+        public void HandleInput(float delta)
         {
             keyHandler.Update();
 
@@ -74,12 +104,9 @@ namespace SpaceShooter.Sprites
             }
 
             // Handles the players shooting
-            if (keyHandler.IsKeyPressed(player.KeyBinds.Shoot))
+            if (keyHandler.IsKeyHeld(player.KeyBinds.Shoot))
             {
-                if (player.CanShoot)
-                {
-                    player.Shoot();
-                }
+                Shoot();
             }
         }
 
@@ -89,7 +116,7 @@ namespace SpaceShooter.Sprites
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            HandleInput();
+            HandleInput((float)gameTime.ElapsedGameTime.TotalSeconds);
             Move(gameTime);
 
             base.Update(gameTime);

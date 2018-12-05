@@ -40,7 +40,7 @@ namespace SpaceShooter
         public const int BACKGROUND_LAYER = 0;
 
         /// <summary>The drawing layer for entities</summary>
-        public const int ENTITY_LAYER = 1;
+        public const int SPRITE_LAYER = 1;
 
         /// <summary>The drawing layer for the hud</summary>
         public const int HUD_LAYER = 2;

@@ -11,23 +11,17 @@ namespace SpaceShooter.Sprites
     /// <summary>
     /// The player in the game.
     /// </summary>
-    public class Player : Sprite
+    public class Player : Ship
     {
         // The offsets for the players starting position
         private const float STARTING_WIDTH_OFFSET = GameSettings.GAME_WIDTH / 2;
         private const float STARTING_HEIGHT_OFFSET = GameSettings.GAME_HEIGHT - 100;
-
-        // The players position when the game starts
-        private Vector2 startPosition;
 
         /// <summary>The players speed.</summary>
         public float Speed { get; } = 330.0f;
 
         /// <summary>The players keybinds.</summary>
         public KeyBinds KeyBinds { get; }
-
-        /// <summary>Can the player shoot.</summary>
-        public bool CanShoot { get; private set; }
 
         /// <summary>
         /// Constructs the player object.
@@ -44,7 +38,7 @@ namespace SpaceShooter.Sprites
         /// </summary>
         public override void Initialize()
         {
-            startPosition = new Vector2(STARTING_WIDTH_OFFSET - (Texture.Width / 2), STARTING_HEIGHT_OFFSET - (Texture.Height / 2));
+            StartPosition = new Vector2(STARTING_WIDTH_OFFSET - (Texture.Width / 2), STARTING_HEIGHT_OFFSET - (Texture.Height / 2));
             Reset();
 
             base.Initialize();
@@ -55,14 +49,14 @@ namespace SpaceShooter.Sprites
         /// </summary>
         public override void Reset()
         {
-            Position = startPosition;
+            Position = StartPosition;
             Velocity = Vector2.Zero;
-            CanShoot = true;
+            ShootTimer = 0.0f;
         }
 
-        public void Shoot()
+        public override void Destroy()
         {
-            // TODO: Shoot
+            GameRoot.Components.Remove(this);
         }
 
         /// <summary>

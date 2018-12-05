@@ -38,7 +38,12 @@ namespace SpaceShooter.Sprites
         /// <summary>
         /// Used for resetting the sprite.
         /// </summary>
-        public abstract void Reset();
+        public virtual void Reset() { }
+
+        /// <summary>
+        /// Destroyed/removes the sprite from the game.
+        /// </summary>
+        public abstract void Destroy();
 
         /// <summary>
         /// The default drawing method for the sprite.
@@ -49,7 +54,7 @@ namespace SpaceShooter.Sprites
             var spriteBatch = GameRoot.SpriteBatch;
 
             spriteBatch.Begin();
-            spriteBatch.Draw(Texture, Position, Color.White);
+            spriteBatch.Draw(Texture, Position, null, Color.White, 0.0f, Origin, 1.0f, SpriteEffects.None, GameSettings.SPRITE_LAYER);
             spriteBatch.End();
 
             base.Draw(gameTime);
