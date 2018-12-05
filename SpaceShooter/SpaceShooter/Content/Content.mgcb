@@ -301,7 +301,7 @@
 /processorParam:TextureFormat=Color
 /build:GFX/Enemy_01/Enemy01_Teal_Frame_3.png
 
-#begin GFX/Enemy_02/Enemy02Green_Frame_1.png
+#begin GFX/Enemy_02/Enemy02_Green_Frame_1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -311,9 +311,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:GFX/Enemy_02/Enemy02Green_Frame_1.png
+/build:GFX/Enemy_02/Enemy02_Green_Frame_1.png
 
-#begin GFX/Enemy_02/Enemy02Green_Frame_2.png
+#begin GFX/Enemy_02/Enemy02_Green_Frame_2.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -323,9 +323,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:GFX/Enemy_02/Enemy02Green_Frame_2.png
+/build:GFX/Enemy_02/Enemy02_Green_Frame_2.png
 
-#begin GFX/Enemy_02/Enemy02Green_Frame_3.png
+#begin GFX/Enemy_02/Enemy02_Green_Frame_3.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -335,9 +335,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:GFX/Enemy_02/Enemy02Green_Frame_3.png
+/build:GFX/Enemy_02/Enemy02_Green_Frame_3.png
 
-#begin GFX/Enemy_02/Enemy02Red_Frame_1.png
+#begin GFX/Enemy_02/Enemy02_Red_Frame_1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -347,9 +347,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:GFX/Enemy_02/Enemy02Red_Frame_1.png
+/build:GFX/Enemy_02/Enemy02_Red_Frame_1.png
 
-#begin GFX/Enemy_02/Enemy02Red_Frame_2.png
+#begin GFX/Enemy_02/Enemy02_Red_Frame_2.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -359,9 +359,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:GFX/Enemy_02/Enemy02Red_Frame_2.png
+/build:GFX/Enemy_02/Enemy02_Red_Frame_2.png
 
-#begin GFX/Enemy_02/Enemy02Red_Frame_3.png
+#begin GFX/Enemy_02/Enemy02_Red_Frame_3.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -371,7 +371,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:GFX/Enemy_02/Enemy02Red_Frame_3.png
+/build:GFX/Enemy_02/Enemy02_Red_Frame_3.png
 
 #begin GFX/Enemy_02/Enemy02_Shadow_Frame_1.png
 /importer:TextureImporter

@@ -32,14 +32,12 @@ namespace SpaceShooter.Screens
         /// </summary>
         public override void Initialize()
         {
-            var gameComponents = GameRoot.Components;
-
             foreach (var component in Components)
             {
-                if (gameComponents.Contains(component))
+                if (GameRoot.Components.Contains(component))
                     continue;
 
-                gameComponents.Add(component);
+                GameRoot.Components.Add(component);
             }
 
             base.Initialize();

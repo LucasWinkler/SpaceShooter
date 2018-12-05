@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SpaceShooter.Resources;
+using SpaceShooter.Screens;
+using SpaceShooter.Sprites;
 using System.Collections.Generic;
 
 namespace SpaceShooter
@@ -66,14 +68,34 @@ namespace SpaceShooter
                 new Resource(ResourceType.Texture, "BluePlayer", "GFX/Player/PlayerBlue_Frame_01"),
                 new Resource(ResourceType.Texture, "RedPlayer", "GFX/Player/PlayerRed_Frame_01"),
 
-                new Resource(ResourceType.Texture, "StandardGreenEnemy", "GFX/Enemy/Enemy02_Green_Frame_1"),
-                new Resource(ResourceType.Texture, "StandardRedEnemy", "GFX/Enemy/Enemy02_Red_Frame_1"),
-                new Resource(ResourceType.Texture, "StandardTealEnemy", "GFX/Enemy/Enemy02_Teal_Frame_1"),
+                new Resource(ResourceType.Texture, "StandardGreenEnemy", "GFX/Enemy_02/Enemy02_Green_Frame_1"),
+                new Resource(ResourceType.Texture, "StandardRedEnemy", "GFX/Enemy_02/Enemy02_Red_Frame_1"),
+                new Resource(ResourceType.Texture, "StandardTealEnemy", "GFX/Enemy_02/Enemy02_Teal_Frame_1"),
 
-                new Resource(ResourceType.Texture, "AdvancedGreenEnemy", "GFX/Enemy/Enemy01_Green_Frame_1"),
-                new Resource(ResourceType.Texture, "AdvancedRedEnemy", "GFX/Enemy/Enemy01_Red_Frame_1"),
-                new Resource(ResourceType.Texture, "AdvancedTealEnemy", "GFX/Enemy/Enemy01_Teal_Frame_1"),
+                new Resource(ResourceType.Texture, "AdvancedGreenEnemy", "GFX/Enemy_01/Enemy01_Green_Frame_1"),
+                new Resource(ResourceType.Texture, "AdvancedRedEnemy", "GFX/Enemy_01/Enemy01_Red_Frame_1"),
+                new Resource(ResourceType.Texture, "AdvancedTealEnemy", "GFX/Enemy_01/Enemy01_Teal_Frame_1"),
             });
+
+            /* This should probably be called in this.LoadContent()
+             * but DrawableGameComponents.LoadContent() method will be called
+             * before this.LoadContent() meaning the resources/content wont be ready.
+             */
+            ResourceManager.LoadContent();
+
+            // Add the game screen to the game.
+            GameScreen gameScreen = new GameScreen(this);
+            Components.Add(gameScreen);
+            Services.AddService(gameScreen);
+
+            // Add the start screen to the game.
+            StartScreen startScreen = new StartScreen(this);
+            Components.Add(startScreen);
+            Services.AddService(startScreen);
+
+            this.HideScreens();
+
+            Services.GetService<GameScreen>().SetActive(true);
 
             base.Initialize();
         }
@@ -86,9 +108,6 @@ namespace SpaceShooter
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // Load all the resources.
-            ResourceManager.LoadContent();
         }
 
         /// <summary>
@@ -101,17 +120,26 @@ namespace SpaceShooter
         }
 
         /// <summary>
+        /// Hides all the game screens
+        /// </summary>
+        public void HideScreens()
+        {
+            foreach (var component in Components)
+            {
+                if (component is GameScreen gameScreen)
+                {
+                    gameScreen.SetActive(false);
+                }
+            }
+        }
+
+        /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
-            // TODO: Add your update logic here
-
             base.Update(gameTime);
         }
 
@@ -121,9 +149,7 @@ namespace SpaceShooter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
+            GraphicsDevice.Clear(Color.Black);
 
             base.Draw(gameTime);
         }

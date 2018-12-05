@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using SpaceShooter.Camera;
+using SpaceShooter.Input;
+using SpaceShooter.Sprites;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
-using SpaceShooter.Sprites;
 
 namespace SpaceShooter.Screens
 {
@@ -16,13 +19,26 @@ namespace SpaceShooter.Screens
         // The games player
         private Player player;
 
+        // The controller which handles the players input
+        private readonly PlayerController playerController;
+
         /// <summary>
         /// Default constructor.
         /// </summary>
         /// <param name="game">The game instance.</param>
         public GameScreen(GameRoot game) : base(game)
         {
-            player = new Player(GameRoot);
+            this.Components.Add(player = new Player(GameRoot,
+                new KeyBinds
+                {
+                    Forwards = Keys.W,
+                    Left = Keys.A,
+                    Backwards = Keys.S,
+                    Right = Keys.D,
+                    Shoot = Keys.Space
+                }));
+
+            this.Components.Add(playerController = new PlayerController(GameRoot, player));
         }
 
         /// <summary>
@@ -58,6 +74,15 @@ namespace SpaceShooter.Screens
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+        }
+
+        /// <summary>
+        /// Draws the game screen.
+        /// </summary>
+        /// <param name="gameTime"></param>
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
         }
     }
 }

@@ -15,13 +15,13 @@ namespace SpaceShooter.Sprites
         public Texture2D Texture { get; protected set; }
 
         /// <summary>The sprites position.</summary>
-        public Vector2 Position { get; protected set; }
+        public Vector2 Position { get; set; }
 
         /// <summary>The sprites origin.</summary>
         public Vector2 Origin { get; protected set; }
 
         /// <summary>The sprites velocity.</summary>
-        public Vector2 Velocity { get; protected set; }
+        public Vector2 Velocity { get; set; }
 
         /// <summary>The sprites axis-aligned bounding box.</summary>
         public Rectangle Bounds { get { return new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height); } }
@@ -46,7 +46,11 @@ namespace SpaceShooter.Sprites
         /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)
         {
-            GameRoot.SpriteBatch.Draw(Texture, Position, Color.White);
+            var spriteBatch = GameRoot.SpriteBatch;
+
+            spriteBatch.Begin();
+            spriteBatch.Draw(Texture, Position, Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
