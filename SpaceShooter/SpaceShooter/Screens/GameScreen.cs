@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SpaceShooter.Camera;
 using SpaceShooter.Controllers;
 using SpaceShooter.Input;
+using SpaceShooter.Screens.Components;
 using SpaceShooter.Sprites;
 using System;
 using System.Collections.Generic;
@@ -20,6 +22,10 @@ namespace SpaceShooter.Screens
         // The games player
         private Player player;
 
+        private KeyHandler keyHandler;
+
+        private Texture2D background;
+
         // The controller which handles the players input
         private readonly PlayerController playerController;
 
@@ -31,6 +37,8 @@ namespace SpaceShooter.Screens
         /// <param name="game">The game instance.</param>
         public GameScreen(GameRoot game) : base(game)
         {
+            this.Components.Add(new ScrollingBackground(GameRoot));
+
             this.Components.Add(player = new Player(GameRoot,
                 new KeyBinds
                 {
@@ -43,6 +51,8 @@ namespace SpaceShooter.Screens
 
             this.Components.Add(playerController = new PlayerController(GameRoot, player));
             this.Components.Add(bulletController = new BulletController(GameRoot));
+
+            this.keyHandler = new KeyHandler();
         }
 
         /// <summary>
@@ -60,6 +70,8 @@ namespace SpaceShooter.Screens
         /// </summary>
         protected override void LoadContent()
         {
+            background = GameRoot.ResourceManager.GetTexture("Background");
+
             base.LoadContent();
         }
 
@@ -77,6 +89,15 @@ namespace SpaceShooter.Screens
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
+            keyHandler.Update();
+
+            if (keyHandler.IsKeyPressed(Keys.Escape))
+            {
+                var startScreen = GameRoot.Services.GetService<StartScreen>();
+                GameRoot.HideScreens();
+                startScreen.SetActive(true);
+            }
+
             base.Update(gameTime);
         }
 
@@ -86,7 +107,12 @@ namespace SpaceShooter.Screens
         /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)
         {
-            
+            var spriteBatch = GameRoot.SpriteBatch;
+
+            spriteBatch.Begin();
+            spriteBatch.Draw(background, Vector2.Zero, Color.White);
+            spriteBatch.End();
+
             base.Draw(gameTime);
         }
     }

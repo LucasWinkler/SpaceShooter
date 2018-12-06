@@ -12,7 +12,7 @@ namespace SpaceShooter.Sprites
         public GameRoot GameRoot { get; }
 
         /// <summary>The sprites texture.</summary>
-        public Texture2D Texture { get; protected set; }
+        public Texture2D Texture { get; set; }
 
         /// <summary>The sprites position.</summary>
         public Vector2 Position { get; set; }

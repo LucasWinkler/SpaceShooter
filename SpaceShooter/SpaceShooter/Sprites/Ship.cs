@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,16 @@ namespace SpaceShooter.Sprites
         public Ship(GameRoot game) : base(game)
         {
             Bullets = new List<Bullet>();
+        }
+
+        /// <summary>
+        /// Construct the ship object with a texture
+        /// </summary>
+        /// <param name="game"></param>
+        public Ship(GameRoot game, Texture2D texture) : base(game)
+        {
+            Bullets = new List<Bullet>();
+            this.Texture = texture;
         }
 
         public override void Destroy()

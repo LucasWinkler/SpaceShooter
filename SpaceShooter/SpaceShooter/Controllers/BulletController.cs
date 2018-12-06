@@ -34,7 +34,6 @@ namespace SpaceShooter.Controllers
             foreach(var b in bullets)
             {
                 game.Components.Remove(b);
-                System.Console.WriteLine("gone");
             }
 
             bullets.Clear();

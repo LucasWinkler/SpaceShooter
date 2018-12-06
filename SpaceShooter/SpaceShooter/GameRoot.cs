@@ -77,6 +77,11 @@ namespace SpaceShooter
                 new Resource(ResourceType.Texture, "AdvancedTealEnemy", "GFX/Enemy_01/Enemy01_Teal_Frame_1"),
 
                 new Resource(ResourceType.Texture, "SmallPlasmaBullet", "GFX/Bullets/Plasma_Small"),
+
+                new Resource(ResourceType.Font, "StandardMenuItem", "Fonts/standardMenuItemFont"),
+                new Resource(ResourceType.Font, "SelectedMenuItem", "Fonts/highlightedMenuItemFont"),
+
+                new Resource(ResourceType.Font, "Title", "Fonts/titleFont"),
             });
 
             /* This should probably be called in this.LoadContent()
@@ -97,7 +102,7 @@ namespace SpaceShooter
 
             this.HideScreens();
 
-            Services.GetService<GameScreen>().SetActive(true);
+            Services.GetService<StartScreen>().SetActive(true);
 
             base.Initialize();
         }
@@ -128,9 +133,9 @@ namespace SpaceShooter
         {
             foreach (var component in Components)
             {
-                if (component is GameScreen gameScreen)
+                if (component is Screen screen)
                 {
-                    gameScreen.SetActive(false);
+                    screen.SetActive(false);
                 }
             }
         }
