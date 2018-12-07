@@ -13,10 +13,10 @@ namespace SpaceShooter.Sprites
 
         public float Speed { get; } = 500.0f;
 
-        public Bullet(GameRoot game, Sprite parent) : base(game)
+        public Bullet(GameRoot GameRoot, Sprite parent) : base(GameRoot)
         {
             this.Parent = parent;
-            this.Texture = game.ResourceManager.GetTexture("SmallPlasmaBullet");
+            this.Texture = GameRoot.ResourceManager.GetTexture("SmallPlasmaBullet");
             this.Velocity = new Vector2(0, -Speed);
         }
 
@@ -25,10 +25,33 @@ namespace SpaceShooter.Sprites
             GameRoot.Components.Remove(this);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime GameRootTime)
         {
-            
-            base.Update(gameTime);
+            var bullets = new List<Bullet>();
+            foreach (var component in GameRoot.Components)
+            {
+                if (component is Bullet bullet)
+                {
+                    bullet.Position += bullet.Velocity * (float)GameRootTime.ElapsedGameTime.TotalSeconds;
+
+                    // Remove the bullet from the GameRoot if it is no longer inside the screen
+                    if (!GameRoot.GraphicsDevice.Viewport.Bounds.Contains(bullet.Bounds))
+                    {
+                        //bullet.Destroy();
+                        bullets.Add(bullet);
+                    }
+                }
+            }
+
+            foreach (var b in bullets)
+            {
+                GameRoot.Components.Remove(b);
+                b.Destroy();
+            }
+
+            bullets.Clear();
+
+            base.Update(GameRootTime);
         }
     }
 }

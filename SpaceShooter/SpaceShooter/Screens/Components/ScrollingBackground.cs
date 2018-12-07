@@ -11,10 +11,7 @@ namespace SpaceShooter.Screens.Components
     public class ScrollingBackground : DrawableGameComponent
     {
         private GameRoot game;
-
         private Texture2D background;
-        private Texture2D secondaryBackground;
-
         private Vector2 position;
         private Vector2 secondaryPosition;
 
@@ -25,14 +22,9 @@ namespace SpaceShooter.Screens.Components
             this.game = game;
         }
 
-        public override void Initialize()
-        {
-            base.Initialize();
-        }
-
         protected override void LoadContent()
         {
-            background = secondaryBackground = game.ResourceManager.GetTexture("Background");
+            background = game.ResourceManager.GetTexture("Background");
 
             base.LoadContent();
         }
@@ -43,7 +35,7 @@ namespace SpaceShooter.Screens.Components
 
             if (position.Y > background.Height)
             {
-                position.Y = -background.Height;
+                position.Y = 0;
             }
 
             secondaryPosition.Y = position.Y - background.Height;
@@ -58,7 +50,7 @@ namespace SpaceShooter.Screens.Components
             spriteBatch.Begin();
 
             spriteBatch.Draw(background, position, null, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, GameSettings.BACKGROUND_LAYER);
-            spriteBatch.Draw(secondaryBackground, secondaryPosition, null, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, GameSettings.BACKGROUND_LAYER);
+            spriteBatch.Draw(background, secondaryPosition, null, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, GameSettings.BACKGROUND_LAYER);
 
             spriteBatch.End();
 

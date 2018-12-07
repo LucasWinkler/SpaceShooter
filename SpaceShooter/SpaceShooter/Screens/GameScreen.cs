@@ -26,9 +26,6 @@ namespace SpaceShooter.Screens
 
         private Texture2D background;
 
-        // The controller which handles the players input
-        private readonly PlayerController playerController;
-
         private readonly BulletController bulletController;
 
         /// <summary>
@@ -49,7 +46,6 @@ namespace SpaceShooter.Screens
                     Shoot = Keys.Space
                 }));
 
-            this.Components.Add(playerController = new PlayerController(GameRoot, player));
             this.Components.Add(bulletController = new BulletController(GameRoot));
 
             this.keyHandler = new KeyHandler();

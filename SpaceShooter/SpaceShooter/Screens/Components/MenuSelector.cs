@@ -39,6 +39,7 @@ namespace SpaceShooter.Screens.Components
         private Color standardItemColour = Color.White;
         private Color selectedItemColour = Color.Yellow;
 
+        // The positional offset for each menu item
         private const int MENU_ITEM_OFFSET = 64;
 
         // The selected menu item index
@@ -60,13 +61,8 @@ namespace SpaceShooter.Screens.Components
         }
 
         /// <summary>
-        /// Initialize the menu selector.
+        /// Load the screens content
         /// </summary>
-        public override void Initialize()
-        {
-            base.Initialize();
-        }
-
         protected override void LoadContent()
         {
             standardItemFont = game.ResourceManager.GetFont("StandardMenuItem");
@@ -75,9 +71,11 @@ namespace SpaceShooter.Screens.Components
             base.LoadContent();
         }
 
+        /// <summary>
+        /// Hides all the screens and shows the selected screen.
+        /// </summary>
         private void SwitchToSelectedScreen()
         {
-            // Hide all the game screens
             game.HideScreens();
 
             switch ((SelectableMenuItems)SelectedItem)
@@ -103,6 +101,10 @@ namespace SpaceShooter.Screens.Components
             }
         }
 
+        /// <summary>
+        /// Handles the selection of menu items.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             keyHandler.Update();
@@ -131,6 +133,10 @@ namespace SpaceShooter.Screens.Components
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// Draws the menu selector/items
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)
         {
             var spriteBatch = game.SpriteBatch;
@@ -143,6 +149,7 @@ namespace SpaceShooter.Screens.Components
                 currentItemFont = standardItemFont;
                 currentItemColour = standardItemColour;
 
+                // Set the colour of the selected item
                 if (SelectedItem == i)
                 {
                     currentItemColour = selectedItemColour;
