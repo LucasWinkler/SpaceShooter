@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SpaceShooter.Interfaces;
+using SpaceShooter.Sprites;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +10,27 @@ using System.Threading.Tasks;
 
 namespace SpaceShooter.Screens.Components
 {
-    public class HealthBar : DrawableGameComponent, IResetable
+    public class HealthBar : DrawableGameComponent
     {
         // Instance of the game and game screen
         private GameRoot game;
-        private GameScreen gameScreen;
+        private readonly GameScreen gameScreen;
 
-        // Health bars textures
+        // Health bar textures
         private Texture2D healthBar;
         private Texture2D healthBarColour;
 
-        // The healthBarColour's source rectangle
-        private Rectangle healthBarColourSource;
+        // Health bar position
+        private Vector2 healthBarPosition;
+
+        // Health bar positional offset
+        private const int X_OFFSET = 9;
+        private const int Y_OFFSET = 7;
+
+        // Health bar calculations
+        private int FullHeathBar { get { return healthBarColour.Width; } }
+        private float HealthBarPercentage { get { return (float)gameScreen.Player.Health / Player.MAX_HEALTH; } }
+        private int HealthBarWidth { get { return (int)(FullHeathBar * HealthBarPercentage); } }
 
         /// <summary>
         /// Health bar constructor
@@ -31,43 +41,25 @@ namespace SpaceShooter.Screens.Components
         {
             this.game = game;
             this.gameScreen = gameScreen;
-            this.gameScreen.Player.Damaged += Player_Damaged;
+            this.healthBarPosition = new Vector2(5);
+            this.DrawOrder = int.MaxValue;
+
+            // Health bar textures
+            healthBar = game.ResourceManager.GetTexture("HealthBar");
+            healthBarColour = game.ResourceManager.GetTexture("HealthBarColour");
         }
 
         /// <summary>
-        /// Resets the health bar
+        /// Draws the health bar.
         /// </summary>
-        public void Reset()
-        {
-            
-        }
-
-        protected override void LoadContent()
-        {
-            healthBar = game.ResourceManager.GetTexture("HealthBar");
-            healthBarColour = game.ResourceManager.GetTexture("HealthBarColour");
-
-            base.LoadContent();
-        }
-
-        private void Player_Damaged(object sender, EventArgs e)
-        {
-            // TODO: Shrink source rect of HealthBarColour
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-        }
-
+        /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)
         {
             var spriteBatch = game.SpriteBatch;
 
             spriteBatch.Begin();
-
-
-
+            spriteBatch.Draw(healthBar, healthBarPosition, Color.White);
+            spriteBatch.Draw(healthBarColour, new Rectangle((int)healthBarPosition.X + X_OFFSET, (int)healthBarPosition.Y + Y_OFFSET, HealthBarWidth, healthBarColour.Height), null, Color.White, 0.0f, Vector2.Zero, SpriteEffects.None, 0);
             spriteBatch.End();
 
             base.Draw(gameTime);

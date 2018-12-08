@@ -18,8 +18,6 @@ namespace SpaceShooter.Sprites
         private const float STARTING_WIDTH_OFFSET = GameSettings.GAME_WIDTH / 2;
         private const float STARTING_HEIGHT_OFFSET = GameSettings.GAME_HEIGHT - 100;
 
-        private const int MAX_HEALTH = 150;
-
         // Movement related vectors
         private Vector2 direction;
         private Vector2 newPosition;
@@ -27,8 +25,7 @@ namespace SpaceShooter.Sprites
         // Handle the players keyboard input
         private KeyHandler keyHandler;
 
-        // Event called when the player is damaged
-        public event EventHandler Damaged;
+        public const int MAX_HEALTH = 150;
 
         /// <summary>The players speed.</summary>
         public float Speed { get; } = 320.0f;
@@ -82,12 +79,6 @@ namespace SpaceShooter.Sprites
         public override void Destroy()
         {
             // TODO: Play animation, sound effect and show game over screen.
-        }
-
-        public override void Damage(int damage)
-        {
-            base.Damage(damage);
-            Damaged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>

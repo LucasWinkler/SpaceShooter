@@ -8,7 +8,12 @@ namespace SpaceShooter.Collision
     {
         private GameRoot game;
         private GameScreen gameScreen;
+
+        // Score per kill
         private const int SCORE_PER_KILL = 20;
+        
+        // Score per enemy that goes off screen
+        private const int SCORE_PENALTY = 10;
 
         public CollisionManager(GameRoot game, GameScreen gameScreen) : base(game)
         {
@@ -58,6 +63,7 @@ namespace SpaceShooter.Collision
                     if (enemy.Position.Y > GameSettings.GAME_HEIGHT)
                     {
                         enemy.Destroy();
+                        gameScreen.Player.Score -= SCORE_PENALTY;
                     }
                 }
             }

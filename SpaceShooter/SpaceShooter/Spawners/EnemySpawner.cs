@@ -46,7 +46,7 @@ namespace SpaceShooter.Spawners
         private const int MAX_ENEMIES = 16;
 
         // The spawn rate modifiers
-        private const float MIN_SPAWN_RATE = 0.05f;
+        private const float MIN_SPAWN_RATE = 0.1f;
         private const float SPAWN_RATE_MOD = 0.09f;
 
         // The amount of time game time until the difficulty is raised (seconds)
@@ -73,7 +73,7 @@ namespace SpaceShooter.Spawners
         /// </summary>
         public void Reset()
         {
-            spawnRate = 1.7f;
+            spawnRate = 1.6f;
             maxEnemiesOnScreen = 4;
             enemySpeedModifier = 1f;
             spawnTimer = 0.0f;

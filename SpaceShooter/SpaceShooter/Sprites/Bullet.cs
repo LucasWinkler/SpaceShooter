@@ -1,26 +1,24 @@
 ﻿using Microsoft.Xna.Framework;
-using SpaceShooter.Interfaces;
 using SpaceShooter.Screens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpaceShooter.Sprites
 {
+    /// <summary>
+    /// A bullet in the game that is shot by a ship.
+    /// </summary>
     public class Bullet : Sprite
     {
+        // Game screen instance
         private GameScreen gameScreen;
+
+        // Bullets damage
+        public int Damage { get; }
 
         /// <summary>Bullets parent (sprite that shot the bullet).</summary>
         public Sprite Parent { get; }
 
         /// <summary>Bullets speed.</summary>
         public float Speed { get; } = 675.0f;
-
-        /// <summary>Bullets damage.</summary>
-        public int Damage { get; } = 50;
 
         /// <summary>
         /// Construct a bullet with a parent.
@@ -33,6 +31,7 @@ namespace SpaceShooter.Sprites
             this.Parent = parent;
             this.Texture = GameRoot.ResourceManager.GetTexture("SmallPlasmaBullet");
             this.Velocity = new Vector2(0, -Speed);
+            this.Damage = 50;
         }
         public override void Reset()
         {
