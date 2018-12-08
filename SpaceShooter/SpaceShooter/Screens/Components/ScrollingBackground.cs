@@ -49,8 +49,8 @@ namespace SpaceShooter.Screens.Components
 
             spriteBatch.Begin();
 
-            spriteBatch.Draw(background, position, null, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, GameSettings.BACKGROUND_LAYER);
-            spriteBatch.Draw(background, secondaryPosition, null, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, GameSettings.BACKGROUND_LAYER);
+            spriteBatch.Draw(background, position, Color.White);
+            spriteBatch.Draw(background, secondaryPosition, Color.White);
 
             spriteBatch.End();
 

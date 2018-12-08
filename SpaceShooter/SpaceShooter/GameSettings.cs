@@ -12,8 +12,6 @@ namespace SpaceShooter
     /// </summary>
     public class GameSettings
     {
-        #region  Game/Window Constants and Static Fields
-
         /// <value>The title for the game</value>
         public const string GAME_TITLE = "Space Defender";
 
@@ -31,23 +29,5 @@ namespace SpaceShooter
 
         /// <value>The games center point</value>
         public static Vector2 GAME_CENTER = new Vector2(GAME_WIDTH / 2, GAME_HEIGHT / 2);
-
-        #endregion
-
-        #region Drawing Layers
-
-        /// <summary>The drawing layer for the background</summary>
-        public const int BACKGROUND_LAYER = 0;
-
-        /// <summary>The drawing layer for entities</summary>
-        public const int SPRITE_LAYER = 1;
-
-        /// <summary>The drawing layer for the hud</summary>
-        public const int HUD_LAYER = 2;
-
-        /// <summary>The drawing layer for the ui</summary>
-        public const int UI_LAYER = 3;
-
-        #endregion
     }
 }

@@ -63,11 +63,16 @@ namespace SpaceShooter
             // Give the resource manager a list of resources
             ResourceManager = new ResourceManager(this, new List<Resource>()
             {
+                #region Backgrounds
                 new Resource(ResourceType.Texture, "Background", "GFX/Background"),
+                #endregion
 
+                #region Players
                 new Resource(ResourceType.Texture, "BluePlayer", "GFX/Player/PlayerBlue_Frame_01"),
                 new Resource(ResourceType.Texture, "RedPlayer", "GFX/Player/PlayerRed_Frame_01"),
+                #endregion
 
+                #region Enemies
                 new Resource(ResourceType.Texture, "StandardGreenEnemy", "GFX/Enemy_02/Enemy02_Green_Frame_1"),
                 new Resource(ResourceType.Texture, "StandardRedEnemy", "GFX/Enemy_02/Enemy02_Red_Frame_1"),
                 new Resource(ResourceType.Texture, "StandardTealEnemy", "GFX/Enemy_02/Enemy02_Teal_Frame_1"),
@@ -75,13 +80,37 @@ namespace SpaceShooter
                 new Resource(ResourceType.Texture, "AdvancedGreenEnemy", "GFX/Enemy_01/Enemy01_Green_Frame_1"),
                 new Resource(ResourceType.Texture, "AdvancedRedEnemy", "GFX/Enemy_01/Enemy01_Red_Frame_1"),
                 new Resource(ResourceType.Texture, "AdvancedTealEnemy", "GFX/Enemy_01/Enemy01_Teal_Frame_1"),
+                #endregion
 
+                #region Bullets
                 new Resource(ResourceType.Texture, "SmallPlasmaBullet", "GFX/Bullets/Plasma_Small"),
+                #endregion
 
+                #region HUD
+                new Resource(ResourceType.Texture, "HealthBar", "GFX/HUD/HealthBar"),
+                new Resource(ResourceType.Texture, "HealthBarColour", "GFX/HUD/HealthBarColor"),
+                #endregion
+
+                #region Fonts
                 new Resource(ResourceType.Font, "StandardMenuItem", "Fonts/standardMenuItemFont"),
                 new Resource(ResourceType.Font, "SelectedMenuItem", "Fonts/highlightedMenuItemFont"),
 
                 new Resource(ResourceType.Font, "Title", "Fonts/titleFont"),
+                #endregion
+
+                #region Powerups
+                new Resource(ResourceType.Texture, "HealthPowerup", "GFX/Powerups/Powerup_Health"),
+                new Resource(ResourceType.Texture, "ShieldPowerup", "GFX/Powerups/Powerup_Shields"),
+                #endregion
+
+                #region Sound Effects
+                new Resource(ResourceType.Sound, "Shoot", "SFX/shoot"),
+                #endregion
+
+                #region Music
+                new Resource(ResourceType.Music, "GameMusic", "Music/GameMusic"),
+                new Resource(ResourceType.Music, "MenuMusic", "Music/MenuMusic"),
+                #endregion
             });
 
             /* This should probably be called in this.LoadContent()

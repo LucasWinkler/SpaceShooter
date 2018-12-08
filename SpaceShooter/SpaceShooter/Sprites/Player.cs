@@ -27,6 +27,9 @@ namespace SpaceShooter.Sprites
         // Handle the players keyboard input
         private KeyHandler keyHandler;
 
+        // Event called when the player is damaged
+        public event EventHandler Damaged;
+
         /// <summary>The players speed.</summary>
         public float Speed { get; } = 320.0f;
 
@@ -48,7 +51,6 @@ namespace SpaceShooter.Sprites
             // The players texture is set here instead of load 
             // content because the StartPosition requires the textures size
             this.Texture = GameRoot.ResourceManager.GetTexture("BluePlayer");
-
             this.Health = MAX_HEALTH;
         }
 
@@ -79,8 +81,13 @@ namespace SpaceShooter.Sprites
         /// </summary>
         public override void Destroy()
         {
-            // TODO: Play animation and sound effect.
-            // GameRoot.ComponentsToRemove.Add(this);
+            // TODO: Play animation, sound effect and show game over screen.
+        }
+
+        public override void Damage(int damage)
+        {
+            base.Damage(damage);
+            Damaged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>

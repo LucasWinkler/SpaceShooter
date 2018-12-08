@@ -21,6 +21,7 @@ namespace SpaceShooter.Spawners
 
         // Random generator for enemy stats
         private readonly Random random;
+
         // List of textures an enemy can be by string/key
         private readonly List<string> enemyTextureKeys;
 
@@ -42,14 +43,14 @@ namespace SpaceShooter.Spawners
         private const float MAX_ENEMY_SPEED_MOD = 115.0f;
 
         // The max limit on enemies
-        private const int MAX_ENEMIES = 15;
+        private const int MAX_ENEMIES = 16;
 
         // The spawn rate modifiers
-        private const float MIN_SPAWN_RATE = 0.02f;
-        private const float SPAWN_RATE_MOD = 0.08f;
+        private const float MIN_SPAWN_RATE = 0.05f;
+        private const float SPAWN_RATE_MOD = 0.09f;
 
         // The amount of time game time until the difficulty is raised (seconds)
-        private const float DIFFICULTY_INCREASE_TIME = 10;
+        private const float DIFFICULTY_INCREASE_TIME = 12;
 
         // The amount of enemies currently on the screen
         public int EnemiesOnScreen { get; set; }
@@ -72,8 +73,8 @@ namespace SpaceShooter.Spawners
         /// </summary>
         public void Reset()
         {
-            spawnRate = 2.25f;
-            maxEnemiesOnScreen = 3;
+            spawnRate = 1.7f;
+            maxEnemiesOnScreen = 4;
             enemySpeedModifier = 1f;
             spawnTimer = 0.0f;
             EnemiesOnScreen = 0;

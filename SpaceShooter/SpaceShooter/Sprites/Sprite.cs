@@ -55,7 +55,7 @@ namespace SpaceShooter.Sprites
             var spriteBatch = GameRoot.SpriteBatch;
 
             spriteBatch.Begin();
-            spriteBatch.Draw(Texture, Position, null, Color.White, 0.0f, Origin, 1.0f, SpriteEffects.None, GameSettings.SPRITE_LAYER);
+            spriteBatch.Draw(Texture, Position, Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
