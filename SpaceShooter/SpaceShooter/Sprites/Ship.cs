@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using SpaceShooter.Screens;
 
@@ -6,6 +7,9 @@ namespace SpaceShooter.Sprites
 {
     public abstract class Ship : Sprite
     {
+        // The ships shooting sound
+        protected SoundEffect shootingSound;
+
         // The time that the player hasnt shot.
         protected float ShootTimer;
 

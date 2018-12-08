@@ -1,11 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using SpaceShooter.Screens;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace SpaceShooter.Sprites
 {
     public class Enemy : Ship
@@ -24,6 +20,7 @@ namespace SpaceShooter.Sprites
         public Enemy(GameRoot game, GameScreen gameScreen) : base(game, gameScreen)
         {
             this.Texture = GameRoot.ResourceManager.GetTexture("StandardGreenEnemy");
+            this.shootingSound = GameRoot.ResourceManager.GetSound("EnemyShoot");
             this.random = new Random();
             this.Speed = 90.0f;
             this.ShootDelay = 2.2f;
@@ -56,6 +53,7 @@ namespace SpaceShooter.Sprites
         {
             GameScreen.ComponentsToRemove.Add(this);
             GameScreen.EnemySpawner.EnemiesOnScreen--;
+
             DropItem();
 
             base.Destroy();
@@ -87,6 +85,8 @@ namespace SpaceShooter.Sprites
 
                 // Add the bullet to the components to be updated and drawn
                 GameScreen.Components.Add(bullet);
+
+                shootingSound.Play();
 
                 // Reset the shooting timer
                 ShootTimer = 0;

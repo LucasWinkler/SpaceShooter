@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using SpaceShooter.Input;
 using SpaceShooter.Screens;
 using System;
@@ -25,6 +26,8 @@ namespace SpaceShooter.Sprites
         // Handle the players keyboard input
         private KeyHandler keyHandler;
 
+        private SoundEffect damageSound;
+ 
         public const int MAX_HEALTH = 150;
 
         /// <summary>The players speed.</summary>
@@ -48,6 +51,9 @@ namespace SpaceShooter.Sprites
             // The players texture is set here instead of load 
             // content because the StartPosition requires the textures size
             this.Texture = GameRoot.ResourceManager.GetTexture("BluePlayer");
+            this.shootingSound = GameRoot.ResourceManager.GetSound("PlayerShoot");
+            this.damageSound = GameRoot.ResourceManager.GetSound("Destroy");
+
             this.Health = MAX_HEALTH;
         }
 
@@ -83,6 +89,12 @@ namespace SpaceShooter.Sprites
             GameRoot.Services.GetService<StartScreen>().SetActive(true);
         }
 
+        public override void Damage(int damage)
+        {
+            damageSound.Play();
+
+            base.Damage(damage);
+        }
         /// <summary>
         /// Move the 
         /// </summary>
@@ -129,6 +141,7 @@ namespace SpaceShooter.Sprites
 
                 // Add the bullet to the components to be updated and drawn
                 GameScreen.Components.Add(bullet);
+                shootingSound.Play();
 
                 // Reset the shooting timer
                 ShootTimer = 0;

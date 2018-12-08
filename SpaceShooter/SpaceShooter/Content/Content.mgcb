@@ -1318,9 +1318,21 @@
 /processorParam:TextureFormat=Color
 /build:GFX/HUD/HealthBarColor.png
 
-#begin SFX/shoot.mp3
+#begin SFX/EnemyShoot.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:SFX/shoot.mp3
+/build:SFX/EnemyShoot.mp3
+
+#begin SFX/PlayerShoot.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/PlayerShoot.mp3
+
+#begin SFX/Destroy.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/Destroy.wav
 
