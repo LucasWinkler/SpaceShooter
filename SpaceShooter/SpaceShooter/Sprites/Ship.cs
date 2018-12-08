@@ -4,7 +4,7 @@ using SpaceShooter.Screens;
 
 namespace SpaceShooter.Sprites
 {
-    public class Ship : Sprite
+    public abstract class Ship : Sprite
     {
         // The time that the player hasnt shot.
         protected float ShootTimer;
@@ -19,7 +19,7 @@ namespace SpaceShooter.Sprites
         public Vector2 Direction { get; set; }
 
         /// <summary>The ships shooting delay.</summary>
-        public float ShootDelay { get; set; } = 0.5f;
+        public float ShootDelay { get; set; }
 
         /// <summary>The ships health (default is 50).</summary>
         public int Health { get; set; }
@@ -35,6 +35,7 @@ namespace SpaceShooter.Sprites
         {
             this.GameScreen = gameScreen;
             this.Health = 50;
+            this.ShootDelay = 0.5f;
         }
 
         /// <summary>
@@ -51,6 +52,8 @@ namespace SpaceShooter.Sprites
             if (Health > 0) Health -= damage;
             if (!IsAlive) Destroy();
         }
+
+        protected abstract void Shoot();
 
         /// <summary>
         /// Update the ship

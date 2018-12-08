@@ -107,7 +107,7 @@ namespace SpaceShooter.Sprites
         /// <summary>
         /// Shoots a bullet from the player
         /// </summary>
-        public void Shoot()
+        protected override void Shoot()
         {
             // Shoots as long as the timer has passed the delay
             if (ShootTimer >= ShootDelay)

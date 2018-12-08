@@ -26,6 +26,7 @@ namespace SpaceShooter.Sprites
             this.Texture = GameRoot.ResourceManager.GetTexture("StandardGreenEnemy");
             this.random = new Random();
             this.Speed = 90.0f;
+            this.ShootDelay = 2.2f;
         }
 
         public override void Initialize()
@@ -65,6 +66,33 @@ namespace SpaceShooter.Sprites
 
         }
 
+        protected override void Shoot()
+        {
+            // Shoots as long as the timer has passed the delay
+            if (ShootTimer >= ShootDelay)
+            {
+                // Create a new bullet and give it the game instance as well as the player as a parent
+                var bullet = new Bullet(GameRoot, GameScreen, this);
+
+                bullet.Velocity = -bullet.Velocity;
+                // Set the startPosition to the players position
+                var startPosition = Position;
+
+                // Modifiy the starting position to be infront of the player and centered
+                startPosition.X += (Texture.Width / 2) - (bullet.Texture.Width / 2);
+                startPosition.Y += bullet.Texture.Height + 10;
+
+                // Give the bullet the new position
+                bullet.Position = startPosition;
+
+                // Add the bullet to the components to be updated and drawn
+                GameScreen.Components.Add(bullet);
+
+                // Reset the shooting timer
+                ShootTimer = 0;
+            }
+        }
+
         /// <summary>
         /// Updates the enemies position.
         /// </summary>
@@ -72,6 +100,7 @@ namespace SpaceShooter.Sprites
         public override void Update(GameTime gameTime)
         {
             this.Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Shoot();
 
             base.Update(gameTime);
         }
