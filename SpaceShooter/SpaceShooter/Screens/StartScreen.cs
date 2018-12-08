@@ -59,31 +59,5 @@ namespace SpaceShooter.Screens
             this.SetActive(true);
             base.Initialize();
         }
-
-        /// <summary>
-        /// Loads any content needed for the start screen
-        /// </summary>
-        protected override void LoadContent()
-        {
-            base.LoadContent();
-        }
-
-        /// <summary>
-        /// Updates the start screen.
-        /// </summary>
-        /// <param name="gameTime"></param>
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// Draws the start screen.
-        /// </summary> 
-        /// <param name="gameTime"></param>
-        public override void Draw(GameTime gameTime)
-        {
-            base.Draw(gameTime);
-        }
     }
 }

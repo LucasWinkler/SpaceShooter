@@ -79,6 +79,8 @@ namespace SpaceShooter.Sprites
         public override void Destroy()
         {
             // TODO: Play animation, sound effect and show game over screen.
+            GameRoot.HideScreens();
+            GameRoot.Services.GetService<StartScreen>().SetActive(true);
         }
 
         /// <summary>

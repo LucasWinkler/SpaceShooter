@@ -75,18 +75,18 @@ namespace SpaceShooter.Screens
         /// <param name="isActive">Should the screen be active or not.</param>
         public void SetActive(bool isActive)
         {
-            this.Enabled = this.Visible = isActive;
-
             foreach (var component in Components)
             {
+                if (component is IResetable resetableComponent)
+                    resetableComponent.Reset();
+
                 component.Enabled = isActive;
 
                 if (component is DrawableGameComponent drawableComponent)
                     drawableComponent.Visible = isActive;
-
-                if (component is IResetable resetableComponent)
-                    resetableComponent.Reset();
             }
+
+            this.Enabled = this.Visible = isActive;
         }
 
         public override void Update(GameTime gameTime)
