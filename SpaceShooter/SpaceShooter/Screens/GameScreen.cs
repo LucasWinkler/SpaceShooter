@@ -6,6 +6,7 @@ using SpaceShooter.Input;
 using SpaceShooter.Screens.Components;
 using SpaceShooter.Spawners;
 using SpaceShooter.Sprites;
+using System.Collections.Generic;
 
 namespace SpaceShooter.Screens
 {
@@ -17,6 +18,12 @@ namespace SpaceShooter.Screens
         private KeyHandler keyHandler;
         private Texture2D background;
 
+        /// <summary>The player instance.</summary>
+        public Player Player { get; }
+
+        /// <summary>Checks for collision for each sprite in the game.</summary>
+        public EnemySpawner EnemySpawner { get; }
+
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -25,7 +32,7 @@ namespace SpaceShooter.Screens
         {
             Components.Add(new ScrollingBackground(GameRoot));
             Components.Add(new CollisionManager(GameRoot, this));
-            Components.Add(new Player(GameRoot, this, new KeyBinds
+            Components.Add(Player = new Player(GameRoot, this, new KeyBinds
             {
                 Forwards = Keys.W,
                 Left = Keys.A,
@@ -34,19 +41,17 @@ namespace SpaceShooter.Screens
                 Shoot = Keys.Space
             }));
 
-            Components.Add(new EnemySpawner(GameRoot, this));
+            Components.Add(EnemySpawner = new EnemySpawner(GameRoot, this, new List<string>()
+            {
+                "StandardGreenEnemy",
+                "StandardRedEnemy",
+                "StandardTealEnemy",
+                "AdvancedGreenEnemy",
+                "AdvancedRedEnemy",
+                "AdvancedTealEnemy"
+            }));
 
             keyHandler = new KeyHandler();
-        }
-
-        /// <summary>
-        /// Initialize the game screen.
-        /// </summary>
-        public override void Initialize()
-        {
-            Reset();
-
-            base.Initialize();
         }
 
         /// <summary>
@@ -58,11 +63,6 @@ namespace SpaceShooter.Screens
 
             base.LoadContent();
         }
-
-        /// <summary>
-        /// Resets the game screen.
-        /// </summary>
-        public override void Reset() { }
 
         /// <summary>
         /// Update the game screen.

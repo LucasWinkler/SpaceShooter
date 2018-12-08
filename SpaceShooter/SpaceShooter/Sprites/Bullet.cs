@@ -17,7 +17,7 @@ namespace SpaceShooter.Sprites
         public Sprite Parent { get; }
 
         /// <summary>Bullets speed.</summary>
-        public float Speed { get; } = 500.0f;
+        public float Speed { get; } = 675.0f;
 
         /// <summary>Bullets damage.</summary>
         public int Damage { get; } = 50;

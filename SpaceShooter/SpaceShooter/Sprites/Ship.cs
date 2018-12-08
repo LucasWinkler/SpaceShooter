@@ -19,7 +19,7 @@ namespace SpaceShooter.Sprites
         public Vector2 Direction { get; set; }
 
         /// <summary>The ships shooting delay.</summary>
-        public float ShootDelay { get; set; } = 0.2222f;
+        public float ShootDelay { get; set; } = 0.5f;
 
         /// <summary>The ships health (default is 50).</summary>
         public int Health { get; set; }

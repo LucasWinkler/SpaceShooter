@@ -28,7 +28,10 @@ namespace SpaceShooter.Sprites
         private KeyHandler keyHandler;
 
         /// <summary>The players speed.</summary>
-        public float Speed { get; } = 330.0f;
+        public float Speed { get; } = 320.0f;
+
+        /// <summary>The players score.</summary>
+        public int Score { get; set; }
 
         /// <summary>The players keybinds.</summary>
         public KeyBinds KeyBinds { get; }
@@ -55,7 +58,6 @@ namespace SpaceShooter.Sprites
         public override void Initialize()
         {
             StartPosition = new Vector2(STARTING_WIDTH_OFFSET - (Texture.Width / 2), STARTING_HEIGHT_OFFSET - (Texture.Height / 2));
-            Reset();
 
             base.Initialize();
         }
@@ -69,6 +71,7 @@ namespace SpaceShooter.Sprites
             Velocity = Vector2.Zero;
             ShootTimer = 0.0f;
             Health = MAX_HEALTH;
+            Score = 0;
         }
 
         /// <summary>

@@ -1,11 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using SpaceShooter.Screens;
 using SpaceShooter.Sprites;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpaceShooter.Collision
 {
@@ -13,6 +8,7 @@ namespace SpaceShooter.Collision
     {
         private GameRoot game;
         private GameScreen gameScreen;
+        private const int SCORE_PER_KILL = 20;
 
         public CollisionManager(GameRoot game, GameScreen gameScreen) : base(game)
         {
@@ -32,8 +28,11 @@ namespace SpaceShooter.Collision
                     {
                         if (otherComponent is Ship ship)
                         {
-                            if (IsColliding(ship, bullet) && bullet.Parent != ship)
+                            if (IsColliding(ship, bullet) && bullet.Parent != ship && bullet.Parent.GetType() != ship.GetType())
                             {
+                                if (ship.GetType() == typeof(Enemy))
+                                    gameScreen.Player.Score += SCORE_PER_KILL;
+
                                 ship.Damage(bullet.Damage);
                                 bullet.Destroy();
                             }
@@ -56,7 +55,7 @@ namespace SpaceShooter.Collision
                 }
                 else if (component is Enemy enemy)
                 {
-                    if (enemy.Position.Y > GameSettings.GAME_HEIGHT - enemy.Texture.Height)
+                    if (enemy.Position.Y > GameSettings.GAME_HEIGHT)
                     {
                         enemy.Destroy();
                     }

@@ -15,20 +15,28 @@ namespace SpaceShooter.Sprites
         public Enemy(GameRoot game, GameScreen gameScreen) : base(game, gameScreen)
         {
             this.Texture = GameRoot.ResourceManager.GetTexture("StandardGreenEnemy");
+            this.Speed = 90.0f;
         }
 
         public override void Initialize()
         {
-            this.Speed = 120.0f;
-            this.Velocity = new Vector2(0, Speed);
-            this.Position = StartPosition;
+            Velocity = new Vector2(0, Speed);
+            Position = StartPosition;
 
             base.Initialize();
+        }
+
+        public override void Reset()
+        {
+            GameScreen.ComponentsToRemove.Add(this);
+
+            base.Reset();
         }
 
         public override void Destroy()
         {
             GameScreen.ComponentsToRemove.Add(this);
+            GameScreen.EnemySpawner.EnemiesOnScreen--;
 
             base.Destroy();
         }
