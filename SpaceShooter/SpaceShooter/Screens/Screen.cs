@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Media;
 using SpaceShooter.Interfaces;
 using System.Collections.Generic;
 
@@ -17,6 +18,9 @@ namespace SpaceShooter.Screens
 
         /// <summary>Components that are waiting to be removed from the screen.</summary>
         public List<GameComponent> ComponentsToRemove { get; private set; }
+
+        /// <summary>The screens background music.</summary>
+        protected Song BackgroundMusic { get; set; }
 
         /// <summary>
         /// Constructs a screen and gets the game instance.
@@ -38,6 +42,7 @@ namespace SpaceShooter.Screens
         public override void Initialize()
         {
             AddScreenComponentsToGameComponents();
+            PlayMusic();
 
             base.Initialize();
         }
@@ -58,12 +63,49 @@ namespace SpaceShooter.Screens
         /// </summary>
         public virtual void Reset()
         {
+            StopMusic();
+
             foreach (var component in Components)
             {
                 if (component is IResetable resetableComponent)
                 {
                     resetableComponent.Reset();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Plays the screens background music.
+        /// </summary>
+        public void PlayMusic()
+        {
+            if (BackgroundMusic != null)
+            {
+                MediaPlayer.IsRepeating = true;
+                MediaPlayer.Volume = 0.2f;
+                MediaPlayer.Play(BackgroundMusic);
+            }
+        }
+
+        /// <summary>
+        /// Pauses the screens background music
+        /// </summary>
+        public void PauseMusic()
+        {
+            if (BackgroundMusic != null)
+            {
+                MediaPlayer.Pause();
+            }
+        }
+
+        /// <summary>
+        /// Stops the screens background music
+        /// </summary>
+        public void StopMusic()
+        {
+            if (BackgroundMusic != null)
+            {
+                MediaPlayer.Stop();
             }
         }
 
@@ -86,7 +128,8 @@ namespace SpaceShooter.Screens
                     drawableComponent.Visible = isActive;
             }
 
-            this.Enabled = this.Visible = isActive;
+            Enabled = Visible = isActive;
+            PlayMusic();
         }
 
         public override void Update(GameTime gameTime)

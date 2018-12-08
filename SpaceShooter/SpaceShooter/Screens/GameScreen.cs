@@ -40,7 +40,6 @@ namespace SpaceShooter.Screens
                 Right = Keys.D,
                 Shoot = Keys.Space
             }));
-
             Components.Add(EnemySpawner = new EnemySpawner(GameRoot, this, new List<string>()
             {
                 "StandardGreenEnemy",
@@ -50,7 +49,6 @@ namespace SpaceShooter.Screens
                 "AdvancedRedEnemy",
                 "AdvancedTealEnemy"
             }));
-
             Components.Add(new HealthBar(GameRoot, this));
 
             keyHandler = new KeyHandler();
@@ -62,6 +60,7 @@ namespace SpaceShooter.Screens
         protected override void LoadContent()
         {
             background = GameRoot.ResourceManager.GetTexture("Background");
+            BackgroundMusic = GameRoot.ResourceManager.GetMusic("GameMusic");
 
             base.LoadContent();
         }

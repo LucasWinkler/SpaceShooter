@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using SpaceShooter.Screens.Components;
 using SpaceShooter.Sprites;
 using System;
@@ -48,15 +49,13 @@ namespace SpaceShooter.Screens
         /// </summary>
         public override void Initialize()
         {
-            this.Components.Add(new ScrollingBackground(GameRoot));
+            Components.Add(new ScrollingBackground(GameRoot));
+            Components.Add(new Title(GameRoot));
+            Components.Add(new MenuSelector(GameRoot, menuItems, new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2)));
+            BackgroundMusic = GameRoot.ResourceManager.GetMusic("MenuMusic");
 
-            this.Components.Add(new Title(GameRoot));
+            SetActive(true);
 
-            // Add a menu selector so that screens can be switched.
-            this.Components.Add(new MenuSelector(GameRoot, menuItems,
-                new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2)));
-
-            this.SetActive(true);
             base.Initialize();
         }
     }
