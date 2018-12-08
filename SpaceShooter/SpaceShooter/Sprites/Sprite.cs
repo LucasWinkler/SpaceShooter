@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SpaceShooter.Interfaces;
 
 namespace SpaceShooter.Sprites
 {
     /// <summary>
     /// The base class for a drawable sprite in the game.
     /// </summary>
-    public abstract class Sprite : DrawableGameComponent
+    public abstract class Sprite : DrawableGameComponent, IResetable
     {
         /// <summary>The instance of the game object.</summary>
         public GameRoot GameRoot { get; }

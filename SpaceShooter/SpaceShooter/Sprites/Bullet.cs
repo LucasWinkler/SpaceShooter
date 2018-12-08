@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using SpaceShooter.Interfaces;
+using SpaceShooter.Screens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,47 +11,53 @@ namespace SpaceShooter.Sprites
 {
     public class Bullet : Sprite
     {
+        private GameScreen gameScreen;
+
+        /// <summary>Bullets parent (sprite that shot the bullet).</summary>
         public Sprite Parent { get; }
 
+        /// <summary>Bullets speed.</summary>
         public float Speed { get; } = 500.0f;
 
-        public Bullet(GameRoot GameRoot, Sprite parent) : base(GameRoot)
+        /// <summary>Bullets damage.</summary>
+        public int Damage { get; } = 50;
+
+        /// <summary>
+        /// Construct a bullet with a parent.
+        /// </summary>
+        /// <param name="GameRoot"></param>
+        /// <param name="parent"></param>
+        public Bullet(GameRoot GameRoot, GameScreen gameScreen, Sprite parent) : base(GameRoot)
         {
+            this.gameScreen = gameScreen;
             this.Parent = parent;
             this.Texture = GameRoot.ResourceManager.GetTexture("SmallPlasmaBullet");
             this.Velocity = new Vector2(0, -Speed);
         }
+        public override void Reset()
+        {
+            gameScreen.ComponentsToRemove.Add(this);
 
+            base.Reset();
+        }
+        /// <summary>
+        /// Destroys/removes the bullet.
+        /// </summary>
         public override void Destroy()
         {
-            GameRoot.Components.Remove(this);
+            // Add to the ComponentsToRemove list to remove at the end of the iteration
+            gameScreen.ComponentsToRemove.Add(this);
+
+            // TODO: Animation? sound effect?
         }
 
+        /// <summary>
+        /// Update the bullets location.
+        /// </summary>
+        /// <param name="GameRootTime"></param>
         public override void Update(GameTime GameRootTime)
         {
-            var bullets = new List<Bullet>();
-            foreach (var component in GameRoot.Components)
-            {
-                if (component is Bullet bullet)
-                {
-                    bullet.Position += bullet.Velocity * (float)GameRootTime.ElapsedGameTime.TotalSeconds;
-
-                    // Remove the bullet from the GameRoot if it is no longer inside the screen
-                    if (!GameRoot.GraphicsDevice.Viewport.Bounds.Contains(bullet.Bounds))
-                    {
-                        //bullet.Destroy();
-                        bullets.Add(bullet);
-                    }
-                }
-            }
-
-            foreach (var b in bullets)
-            {
-                GameRoot.Components.Remove(b);
-                b.Destroy();
-            }
-
-            bullets.Clear();
+            Position += Velocity * (float)GameRootTime.ElapsedGameTime.TotalSeconds;
 
             base.Update(GameRootTime);
         }

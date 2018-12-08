@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using SpaceShooter.Input;
+using SpaceShooter.Screens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,9 @@ namespace SpaceShooter.Sprites
         private const float STARTING_WIDTH_OFFSET = GameSettings.GAME_WIDTH / 2;
         private const float STARTING_HEIGHT_OFFSET = GameSettings.GAME_HEIGHT - 100;
 
-        //
+        private const int MAX_HEALTH = 150;
+
+        // Movement related vectors
         private Vector2 direction;
         private Vector2 newPosition;
 
@@ -34,7 +37,7 @@ namespace SpaceShooter.Sprites
         /// Constructs the player object.
         /// </summary>
         /// <param name="game"></param>
-        public Player(GameRoot game, KeyBinds keyBinds) : base(game)
+        public Player(GameRoot game, GameScreen GameScreen, KeyBinds keyBinds) : base(game, GameScreen)
         {
             this.KeyBinds = keyBinds;
             this.keyHandler = new KeyHandler();
@@ -42,6 +45,8 @@ namespace SpaceShooter.Sprites
             // The players texture is set here instead of load 
             // content because the StartPosition requires the textures size
             this.Texture = GameRoot.ResourceManager.GetTexture("BluePlayer");
+
+            this.Health = MAX_HEALTH;
         }
 
         /// <summary>
@@ -63,6 +68,7 @@ namespace SpaceShooter.Sprites
             Position = StartPosition;
             Velocity = Vector2.Zero;
             ShootTimer = 0.0f;
+            Health = MAX_HEALTH;
         }
 
         /// <summary>
@@ -71,6 +77,7 @@ namespace SpaceShooter.Sprites
         public override void Destroy()
         {
             // TODO: Play animation and sound effect.
+            // GameRoot.ComponentsToRemove.Add(this);
         }
 
         /// <summary>
@@ -105,7 +112,7 @@ namespace SpaceShooter.Sprites
             if (ShootTimer >= ShootDelay)
             {
                 // Create a new bullet and give it the game instance as well as the player as a parent
-                var bullet = new Bullet(GameRoot, this);
+                var bullet = new Bullet(GameRoot, GameScreen, this);
 
                 // Set the startPosition to the players position
                 var startPosition = Position;
@@ -118,7 +125,7 @@ namespace SpaceShooter.Sprites
                 bullet.Position = startPosition;
 
                 // Add the bullet to the components to be updated and drawn
-                GameRoot.Components.Add(bullet);
+                GameScreen.Components.Add(bullet);
 
                 // Reset the shooting timer
                 ShootTimer = 0;

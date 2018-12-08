@@ -1,16 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using SpaceShooter.Camera;
-using SpaceShooter.Controllers;
+using SpaceShooter.Collision;
 using SpaceShooter.Input;
 using SpaceShooter.Screens.Components;
+using SpaceShooter.Spawners;
 using SpaceShooter.Sprites;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpaceShooter.Screens
 {
@@ -19,14 +14,8 @@ namespace SpaceShooter.Screens
     /// </summary>
     public class GameScreen : Screen
     {
-        // The games player
-        private Player player;
-
         private KeyHandler keyHandler;
-
         private Texture2D background;
-
-        private readonly BulletController bulletController;
 
         /// <summary>
         /// Default constructor.
@@ -34,21 +23,20 @@ namespace SpaceShooter.Screens
         /// <param name="game">The game instance.</param>
         public GameScreen(GameRoot game) : base(game)
         {
-            this.Components.Add(new ScrollingBackground(GameRoot));
+            Components.Add(new ScrollingBackground(GameRoot));
+            Components.Add(new CollisionManager(GameRoot, this));
+            Components.Add(new Player(GameRoot, this, new KeyBinds
+            {
+                Forwards = Keys.W,
+                Left = Keys.A,
+                Backwards = Keys.S,
+                Right = Keys.D,
+                Shoot = Keys.Space
+            }));
 
-            this.Components.Add(player = new Player(GameRoot,
-                new KeyBinds
-                {
-                    Forwards = Keys.W,
-                    Left = Keys.A,
-                    Backwards = Keys.S,
-                    Right = Keys.D,
-                    Shoot = Keys.Space
-                }));
+            Components.Add(new EnemySpawner(GameRoot, this));
 
-            this.Components.Add(bulletController = new BulletController(GameRoot));
-
-            this.keyHandler = new KeyHandler();
+            keyHandler = new KeyHandler();
         }
 
         /// <summary>
@@ -74,10 +62,7 @@ namespace SpaceShooter.Screens
         /// <summary>
         /// Resets the game screen.
         /// </summary>
-        public void Reset()
-        {
-            player.Reset();
-        }
+        public override void Reset() { }
 
         /// <summary>
         /// Update the game screen.

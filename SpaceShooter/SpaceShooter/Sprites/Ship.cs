@@ -1,17 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SpaceShooter.Screens;
 
 namespace SpaceShooter.Sprites
 {
     public class Ship : Sprite
     {
-        /// <summary>The ships active bullets.</summary>
-        public List<Bullet> Bullets { get; set; }
+        // The time that the player hasnt shot.
+        protected float ShootTimer;
+
+        /// <summary>Game screen instance.</summary>
+        public GameScreen GameScreen { get; }
 
         /// <summary>The ships starting position.</summary>
         public Vector2 StartPosition { get; set; }
@@ -19,33 +18,44 @@ namespace SpaceShooter.Sprites
         /// <summary>The ships direction.</summary>
         public Vector2 Direction { get; set; }
 
+        /// <summary>The ships shooting delay.</summary>
         public float ShootDelay { get; set; } = 0.2222f;
-        public float ShootTimer { get; set; }
 
-        /// <summary>
-        /// Construct the ship object
-        /// </summary>
-        /// <param name="game"></param>
-        public Ship(GameRoot game) : base(game)
-        {
-            Bullets = new List<Bullet>();
-        }
+        /// <summary>The ships health (default is 50).</summary>
+        public int Health { get; set; }
+
+        /// <summary>Returns true if health is greater than zero.</summary>
+        public bool IsAlive => Health > 0;
 
         /// <summary>
         /// Construct the ship object with a texture
         /// </summary>
         /// <param name="game"></param>
-        public Ship(GameRoot game, Texture2D texture) : base(game)
+        public Ship(GameRoot game, GameScreen gameScreen) : base(game)
         {
-            Bullets = new List<Bullet>();
-            this.Texture = texture;
+            this.GameScreen = gameScreen;
+            this.Health = 50;
         }
 
-        public override void Destroy()
-        {
+        /// <summary>
+        /// Destroy the ship
+        /// </summary>
+        public override void Destroy() { }
 
+        /// <summary>
+        /// Damage the ship
+        /// </summary>
+        /// <param name="damage"></param>
+        public virtual void Damage(int damage)
+        {
+            if (Health > 0) Health -= damage;
+            if (!IsAlive) Destroy();
         }
 
+        /// <summary>
+        /// Update the ship
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             ShootTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;

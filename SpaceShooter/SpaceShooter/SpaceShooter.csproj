@@ -41,13 +41,13 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Camera\Camera2D.cs" />
     <Compile Include="Collision\CollisionManager.cs" />
     <Compile Include="GameRoot.cs" />
     <Compile Include="GameSettings.cs" />
     <Compile Include="Input\KeyBinds.cs" />
     <Compile Include="Input\KeyHandler.cs" />
     <Compile Include="Input\MouseHandler.cs" />
+    <Compile Include="Interfaces\IResetable.cs" />
     <Compile Include="Resources\Resource.cs" />
     <Compile Include="Resources\ResourceManager.cs" />
     <Compile Include="Screens\Components\MenuSelector.cs" />
@@ -79,9 +79,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
