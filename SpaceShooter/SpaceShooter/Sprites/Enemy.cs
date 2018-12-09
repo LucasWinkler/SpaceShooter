@@ -63,15 +63,12 @@ namespace SpaceShooter.Sprites
             GameScreen.ComponentsToRemove.Add(this);
             GameScreen.EnemySpawner.EnemiesOnScreen--;
 
-            DropItem();
+            //DropItem();
 
             base.Destroy();
         }
 
-        private void DropItem()
-        {
-
-        }
+        //private void DropItem() { }
 
         protected override void Shoot()
         {
@@ -108,6 +105,7 @@ namespace SpaceShooter.Sprites
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
+
             this.Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Shoot();
 

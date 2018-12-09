@@ -15,7 +15,7 @@ namespace SpaceShooter.Collision
         private const int SCORE_PER_KILL = 20;
 
         // Score per enemy that goes off screen
-        private const int SCORE_PENALTY = 10;
+        private const int SCORE_PENALTY = 15;
 
         /// <summary>
         /// Constructor
@@ -58,6 +58,13 @@ namespace SpaceShooter.Collision
         private bool IsEnemy(Ship ship, Ship otherShip) => ship.GetType() != otherShip.GetType();
 
         /// <summary>
+        /// Checks if a sprite is within the screen.
+        /// </summary>
+        /// <param name="sprite"></param>
+        /// <returns></returns>
+        private bool InBounds(Sprite sprite) => game.GraphicsDevice.Viewport.Bounds.Intersects(sprite.Bounds);
+
+        /// <summary>
         /// Removes any sprites that are outside of the screen.
         /// </summary>
         private void CheckOutOfScreenSprites()
@@ -66,7 +73,7 @@ namespace SpaceShooter.Collision
             {
                 if (component is Bullet bullet)
                 {
-                    if (!game.GraphicsDevice.Viewport.Bounds.Contains(bullet.Bounds))
+                    if (!InBounds(bullet))
                     {
                         gameScreen.ComponentsToRemove.Add(bullet);
                     }
@@ -98,6 +105,10 @@ namespace SpaceShooter.Collision
                             // If the ship which shot the bullet is not an enemy of 
                             // the ship being checked continue to next iteration
                             if (!IsEnemy(bullet, ship))
+                                continue;
+
+                            // Makes sure that the ship is within the screen before checking collision
+                            if (!InBounds(ship))
                                 continue;
 
                             // If the ship and bullet are colliding

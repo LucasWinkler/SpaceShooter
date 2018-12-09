@@ -40,7 +40,7 @@ namespace SpaceShooter.Spawners
 
         // Min/max enemy speed modifiers
         private const float MIN_ENEMY_SPEED_MOD = 90.0f;
-        private const float MAX_ENEMY_SPEED_MOD = 115.0f;
+        private const float MAX_ENEMY_SPEED_MOD = 120.0f;
 
         // The max limit on enemies
         private const int MAX_ENEMIES = 16;
@@ -137,7 +137,7 @@ namespace SpaceShooter.Spawners
                 var enemy = new Enemy(game, gameScreen)
                 {
                     Texture = GetRandomTexture(),
-                    Speed = GetRandomFloat(MIN_ENEMY_SPEED_MOD * enemySpeedModifier, MAX_ENEMY_SPEED_MOD * enemySpeedModifier)
+                    Speed = GetRandomFloat(MIN_ENEMY_SPEED_MOD * enemySpeedModifier, MAX_ENEMY_SPEED_MOD * enemySpeedModifier) 
                 };
                 enemy.StartPosition = new Vector2(random.Next(0, GameSettings.GAME_WIDTH - enemy.Texture.Width), 0 - enemy.Texture.Height);
 

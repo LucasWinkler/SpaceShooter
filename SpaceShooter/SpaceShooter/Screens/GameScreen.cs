@@ -50,6 +50,7 @@ namespace SpaceShooter.Screens
                 "AdvancedTealEnemy"
             }));
             Components.Add(new HealthBar(GameRoot, this));
+            Components.Add(new Score(GameRoot, this));
 
             keyHandler = new KeyHandler();
         }
