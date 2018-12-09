@@ -52,6 +52,7 @@
     <Compile Include="Resources\ResourceManager.cs" />
     <Compile Include="Screens\Components\HealthBar.cs" />
     <Compile Include="Screens\Components\MenuSelector.cs" />
+    <Compile Include="Screens\Components\Score.cs" />
     <Compile Include="Screens\Components\ScrollingBackground.cs" />
     <Compile Include="Screens\Components\Title.cs" />
     <Compile Include="Screens\GameScreen.cs" />

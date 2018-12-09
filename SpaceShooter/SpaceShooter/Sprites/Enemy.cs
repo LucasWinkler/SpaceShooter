@@ -47,6 +47,15 @@ namespace SpaceShooter.Sprites
         }
 
         /// <summary>
+        /// Silently removes an enemy from the game.
+        /// </summary>
+        public void Remove()
+        {
+            GameScreen.ComponentsToRemove.Add(this);
+            GameScreen.EnemySpawner.EnemiesOnScreen--;
+        }
+
+        /// <summary>
         /// Destroys this enemy.
         /// </summary>
         public override void Destroy()

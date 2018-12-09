@@ -94,8 +94,8 @@ namespace SpaceShooter
                 #region Fonts
                 new Resource(ResourceType.Font, "StandardMenuItem", "Fonts/standardMenuItemFont"),
                 new Resource(ResourceType.Font, "SelectedMenuItem", "Fonts/highlightedMenuItemFont"),
-
                 new Resource(ResourceType.Font, "Title", "Fonts/titleFont"),
+                new Resource(ResourceType.Font, "Score", "Fonts/scoreFont"),
                 #endregion
 
                 #region Powerups
