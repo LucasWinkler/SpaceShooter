@@ -27,8 +27,6 @@ namespace SpaceShooter.Sprites
         private KeyHandler keyHandler;
 
         private SoundEffect damageSound;
- 
-        public const int MAX_HEALTH = 150;
 
         /// <summary>The players speed.</summary>
         public float Speed { get; } = 320.0f;
@@ -54,7 +52,8 @@ namespace SpaceShooter.Sprites
             this.shootingSound = GameRoot.ResourceManager.GetSound("PlayerShoot");
             this.damageSound = GameRoot.ResourceManager.GetSound("Destroy");
 
-            this.Health = MAX_HEALTH;
+            this.MaxHealth = 150;
+            this.Health = MaxHealth;
         }
 
         /// <summary>
@@ -75,7 +74,7 @@ namespace SpaceShooter.Sprites
             Position = StartPosition;
             Velocity = Vector2.Zero;
             ShootTimer = 0.0f;
-            Health = MAX_HEALTH;
+            Health = MaxHealth;
             Score = 0;
         }
 

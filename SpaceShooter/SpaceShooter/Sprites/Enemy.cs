@@ -1,13 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using SpaceShooter.Screens;
+using SpaceShooter.Utility;
 using System;
 namespace SpaceShooter.Sprites
 {
     public class Enemy : Ship
     {
-        // Random number generator to decide if the enemy should drop an item
         private readonly Random random;
+
+        private const float MIN_SHOOT_DELAY = 1.0f;
+        private const float MAX_SHOOT_DELAY = 2.5f;
 
         /// <summary>The enemies speed.</summary>
         public float Speed { get; set; }
@@ -23,7 +26,7 @@ namespace SpaceShooter.Sprites
             this.shootingSound = GameRoot.ResourceManager.GetSound("EnemyShoot");
             this.random = new Random();
             this.Speed = 90.0f;
-            this.ShootDelay = 2.2f;
+            this.ShootDelay = 1.2f;
         }
 
         public override void Initialize()
@@ -79,7 +82,7 @@ namespace SpaceShooter.Sprites
                 var bullet = new Bullet(GameRoot, GameScreen, this);
 
                 bullet.Velocity = -bullet.Velocity;
-                // Set the startPosition to the players position
+
                 var startPosition = Position;
 
                 // Modifiy the starting position to be infront of the player and centered
@@ -96,6 +99,9 @@ namespace SpaceShooter.Sprites
 
                 // Reset the shooting timer
                 ShootTimer = 0;
+
+                // Randomize the shooting delay
+                ShootDelay = CalculationHelper.GetRandomFloat(MIN_SHOOT_DELAY, MAX_SHOOT_DELAY);
             }
         }
 

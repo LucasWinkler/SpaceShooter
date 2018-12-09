@@ -16,7 +16,6 @@ namespace SpaceShooter.Screens
     public class GameScreen : Screen
     {
         private KeyHandler keyHandler;
-        private Texture2D background;
 
         /// <summary>The player instance.</summary>
         public Player Player { get; }
@@ -60,7 +59,6 @@ namespace SpaceShooter.Screens
         /// </summary>
         protected override void LoadContent()
         {
-            background = GameRoot.ResourceManager.GetTexture("Background");
             BackgroundMusic = GameRoot.ResourceManager.GetMusic("GameMusic");
 
             base.LoadContent();
@@ -82,21 +80,6 @@ namespace SpaceShooter.Screens
             }
 
             base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// Draws the game screen.
-        /// </summary>
-        /// <param name="gameTime"></param>
-        public override void Draw(GameTime gameTime)
-        {
-            var spriteBatch = GameRoot.SpriteBatch;
-
-            spriteBatch.Begin();
-            spriteBatch.Draw(background, Vector2.Zero, Color.White);
-            spriteBatch.End();
-
-            base.Draw(gameTime);
         }
     }
 }

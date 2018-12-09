@@ -12,10 +12,10 @@ namespace SpaceShooter.Collision
         private GameScreen gameScreen;
 
         // Score per kill
-        private const int SCORE_PER_KILL = 20;
+        private const int SCORE_PER_KILL = 15;
 
         // Score per enemy that goes off screen
-        private const int SCORE_PENALTY = 15;
+        private const int SCORE_PENALTY = 35;
 
         /// <summary>
         /// Constructor
@@ -83,7 +83,9 @@ namespace SpaceShooter.Collision
                     if (enemy.Position.Y > GameSettings.GAME_HEIGHT)
                     {
                         enemy.Remove();
-                        gameScreen.Player.Score -= SCORE_PENALTY;
+
+                        // Ensure the score does not go below 0
+                        gameScreen.Player.Score = MathHelper.Clamp(gameScreen.Player.Score - SCORE_PENALTY, 0, int.MaxValue);
                     }
                 }
             }

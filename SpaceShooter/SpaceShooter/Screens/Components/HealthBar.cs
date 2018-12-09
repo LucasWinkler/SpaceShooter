@@ -29,7 +29,7 @@ namespace SpaceShooter.Screens.Components
 
         // Health bar calculations
         private int FullHeathBar { get { return healthBarColour.Width; } }
-        private float HealthBarPercentage { get { return (float)gameScreen.Player.Health / Player.MAX_HEALTH; } }
+        private float HealthBarPercentage { get { return (float)gameScreen.Player.Health / gameScreen.Player.MaxHealth; } }
         private int HealthBarWidth { get { return (int)(FullHeathBar * HealthBarPercentage); } }
 
         /// <summary>

@@ -28,6 +28,8 @@ namespace SpaceShooter.Sprites
         /// <summary>The ships health (default is 50).</summary>
         public int Health { get; set; }
 
+        public int MaxHealth { get; protected set; }
+
         /// <summary>Returns true if health is greater than zero.</summary>
         public bool IsAlive => Health > 0;
 
@@ -38,8 +40,9 @@ namespace SpaceShooter.Sprites
         public Ship(GameRoot game, GameScreen gameScreen) : base(game)
         {
             this.GameScreen = gameScreen;
-            this.Health = 50;
             this.ShootDelay = 0.5f;
+            this.MaxHealth = 50;
+            this.Health = MaxHealth;
         }
 
         /// <summary>
@@ -53,7 +56,8 @@ namespace SpaceShooter.Sprites
         /// <param name="damage"></param>
         public virtual void Damage(int damage)
         {
-            if (Health > 0) Health -= damage;
+            Health = MathHelper.Clamp(Health - damage, 0, MaxHealth);
+
             if (!IsAlive) Destroy();
         }
 
