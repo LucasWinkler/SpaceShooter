@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceShooter.Screens.Components
 {
-    public class Title : DrawableGameComponent
+    public class BasicText : DrawableGameComponent
     {
         private GameRoot game;
         private SpriteFont font;
@@ -11,21 +11,34 @@ namespace SpaceShooter.Screens.Components
         private Vector2 position;
         private string text;
 
-        public Title(GameRoot game, string text) : base(game)
+        /// <summary>
+        /// Score constructor
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="gameScreen"></param>
+        public BasicText(GameRoot game, string text, Vector2 position) : base(game)
         {
             this.game = game;
+            this.text = text;
+            this.position = position;
             this.colour = Color.White;
-            this.text = string.IsNullOrEmpty(text) ? "Placeholder" : text;
         }
 
+        /// <summary>
+        /// Loads the font
+        /// </summary>
         protected override void LoadContent()
         {
-            font = game.ResourceManager.GetFont("Title");
-            position = new Vector2((GameSettings.GAME_WIDTH / 2) - (font.MeasureString(text).X / 2), 315);
+            font = game.ResourceManager.GetFont("BasicText");
+            position.X = position.X - (font.MeasureString(text).X / 2);
 
             base.LoadContent();
         }
 
+        /// <summary>
+        /// Draws the score
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)
         {
             var spriteBatch = game.SpriteBatch;

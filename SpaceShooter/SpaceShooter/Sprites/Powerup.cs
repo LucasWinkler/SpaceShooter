@@ -21,7 +21,7 @@ namespace SpaceShooter.Sprites
         }
 
         /// <summary>
-        /// Removes the item from the game.
+        /// Removes the powerup from the game.
         /// </summary>
         public override void Destroy()
         {

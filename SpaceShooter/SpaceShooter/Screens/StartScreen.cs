@@ -50,7 +50,7 @@ namespace SpaceShooter.Screens
         public override void Initialize()
         {
             Components.Add(new ScrollingBackground(GameRoot));
-            Components.Add(new Title(GameRoot));
+            Components.Add(new Title(GameRoot, GameSettings.GAME_TITLE));
             Components.Add(new MenuSelector(GameRoot, menuItems, new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2)));
             BackgroundMusic = GameRoot.ResourceManager.GetMusic("MenuMusic");
 

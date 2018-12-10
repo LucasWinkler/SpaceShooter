@@ -39,7 +39,11 @@ namespace SpaceShooter.Sprites
         /// <summary>
         /// Used for resetting the sprite.
         /// </summary>
-        public virtual void Reset() { }
+        public virtual void Reset()
+        {
+            Position = Vector2.Zero;
+            Velocity = Vector2.Zero;
+        }
 
         /// <summary>
         /// Destroyed/removes the sprite from the game.

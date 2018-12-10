@@ -42,7 +42,6 @@ namespace SpaceShooter.Screens
         public override void Initialize()
         {
             AddScreenComponentsToGameComponents();
-            PlayMusic();
 
             base.Initialize();
         }
@@ -63,7 +62,7 @@ namespace SpaceShooter.Screens
         /// </summary>
         public virtual void Reset()
         {
-            StopMusic();
+            MediaPlayer.Stop();
 
             foreach (var component in Components)
             {
@@ -99,17 +98,6 @@ namespace SpaceShooter.Screens
         }
 
         /// <summary>
-        /// Stops the screens background music
-        /// </summary>
-        public void StopMusic()
-        {
-            if (BackgroundMusic != null)
-            {
-                MediaPlayer.Stop();
-            }
-        }
-
-        /// <summary>
         /// Forces the screen and it's components to start or 
         /// stop updating/drawing. This depends on the boolean
         /// passed through to the method.
@@ -117,6 +105,8 @@ namespace SpaceShooter.Screens
         /// <param name="isActive">Should the screen be active or not.</param>
         public void SetActive(bool isActive)
         {
+            MediaPlayer.Stop();
+
             foreach (var component in Components)
             {
                 if (component is IResetable resetableComponent)
@@ -129,7 +119,7 @@ namespace SpaceShooter.Screens
             }
 
             Enabled = Visible = isActive;
-            PlayMusic();
+            if (isActive) PlayMusic();
         }
 
         public override void Update(GameTime gameTime)

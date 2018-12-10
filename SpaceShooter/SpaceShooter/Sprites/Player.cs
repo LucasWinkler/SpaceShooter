@@ -71,11 +71,13 @@ namespace SpaceShooter.Sprites
         /// </summary>
         public override void Reset()
         {
+            base.Reset();
+
             Position = StartPosition;
             Velocity = Vector2.Zero;
             ShootTimer = 0.0f;
             Health = MaxHealth;
-            Score = 0;
+            Score = 0;   
         }
 
         /// <summary>
@@ -83,9 +85,12 @@ namespace SpaceShooter.Sprites
         /// </summary>
         public override void Destroy()
         {
-            // TODO: Play animation, sound effect and show game over screen.
+            var endScreen = GameRoot.Services.GetService<EndScreen>();
+            endScreen.EndScore.Score = Score.ToString();
+
+            // TODO: Play animation, sound effects
             GameRoot.HideScreens();
-            GameRoot.Services.GetService<StartScreen>().SetActive(true);
+            endScreen.SetActive(true);
         }
 
         public override void Damage(int damage)
@@ -94,6 +99,7 @@ namespace SpaceShooter.Sprites
 
             base.Damage(damage);
         }
+
         /// <summary>
         /// Move the 
         /// </summary>

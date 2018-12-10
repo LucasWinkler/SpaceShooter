@@ -96,6 +96,8 @@ namespace SpaceShooter
                 new Resource(ResourceType.Font, "SelectedMenuItem", "Fonts/highlightedMenuItemFont"),
                 new Resource(ResourceType.Font, "Title", "Fonts/titleFont"),
                 new Resource(ResourceType.Font, "Score", "Fonts/scoreFont"),
+                new Resource(ResourceType.Font, "EndScore", "Fonts/endScoreFont"),
+                new Resource(ResourceType.Font, "BasicText", "Fonts/basicText"),
                 #endregion
 
                 #region Powerups
@@ -127,12 +129,17 @@ namespace SpaceShooter
             Services.AddService(gameScreen);
 
             // Add the start screen to the game.
+            EndScreen endScreen = new EndScreen(this);
+            Components.Add(endScreen);
+            Services.AddService(endScreen);
+
+            // Add the start screen to the game.
             StartScreen startScreen = new StartScreen(this);
             Components.Add(startScreen);
             Services.AddService(startScreen);
 
             this.HideScreens();
-
+            
             Services.GetService<StartScreen>().SetActive(true);
 
             base.Initialize();
