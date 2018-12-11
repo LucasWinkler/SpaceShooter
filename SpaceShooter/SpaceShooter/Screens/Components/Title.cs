@@ -3,6 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceShooter.Screens.Components
 {
+    /// <summary>
+    /// Simple component for drawing a title.
+    /// </summary>
     public class Title : DrawableGameComponent
     {
         private GameRoot game;
@@ -11,6 +14,11 @@ namespace SpaceShooter.Screens.Components
         private Vector2 position;
         private string text;
 
+        /// <summary>
+        /// Title constructor
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="text"></param>
         public Title(GameRoot game, string text) : base(game)
         {
             this.game = game;
@@ -18,6 +26,9 @@ namespace SpaceShooter.Screens.Components
             this.text = string.IsNullOrEmpty(text) ? "Placeholder" : text;
         }
 
+        /// <summary>
+        /// Loads the titles content
+        /// </summary>
         protected override void LoadContent()
         {
             font = game.ResourceManager.GetFont("Title");
@@ -26,6 +37,10 @@ namespace SpaceShooter.Screens.Components
             base.LoadContent();
         }
 
+        /// <summary>
+        /// Draws the title.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)
         {
             var spriteBatch = game.SpriteBatch;

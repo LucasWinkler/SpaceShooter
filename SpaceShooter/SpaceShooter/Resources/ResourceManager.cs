@@ -28,7 +28,8 @@ namespace SpaceShooter.Resources
         /// Constructs the resource manager object with a new 
         /// content manager and a list of resources to be loaded. 
         /// </summary>
-        /// <param name="gameResources"></param>
+        /// <param name="game"></param>
+        /// <param name="resources"></param>
         public ResourceManager(GameRoot game, List<Resource> resources)
         {
             this.contentManager = new ContentManager(game.Services, "Content");

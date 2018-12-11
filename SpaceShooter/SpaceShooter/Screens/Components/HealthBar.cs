@@ -1,15 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SpaceShooter.Interfaces;
-using SpaceShooter.Sprites;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpaceShooter.Screens.Components
 {
+    /// <summary>
+    /// The players health bar component.
+    /// </summary>
     public class HealthBar : DrawableGameComponent
     {
         // Instance of the game and game screen

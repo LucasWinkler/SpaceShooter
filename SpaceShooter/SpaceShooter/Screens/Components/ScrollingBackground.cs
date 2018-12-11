@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace SpaceShooter.Screens.Components
 {
+    /// <summary>
+    /// A scrolling background component.
+    /// </summary>
     public class ScrollingBackground : DrawableGameComponent
     {
         private GameRoot game;
@@ -17,11 +20,18 @@ namespace SpaceShooter.Screens.Components
 
         private const float SCROLL_SPEED = 12.0f;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="game"></param>
         public ScrollingBackground(GameRoot game) : base(game)
         {
             this.game = game;
         }
 
+        /// <summary>
+        /// Load the background.
+        /// </summary>
         protected override void LoadContent()
         {
             background = game.ResourceManager.GetTexture("Background");
@@ -29,6 +39,10 @@ namespace SpaceShooter.Screens.Components
             base.LoadContent();
         }
 
+        /// <summary>
+        /// Update the position of the scrolling background.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             position.Y += SCROLL_SPEED * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -43,6 +57,10 @@ namespace SpaceShooter.Screens.Components
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// Draw the background.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)
         {
             var spriteBatch = game.SpriteBatch;

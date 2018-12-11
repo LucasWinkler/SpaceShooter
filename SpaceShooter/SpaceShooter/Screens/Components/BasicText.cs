@@ -3,6 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceShooter.Screens.Components
 {
+    /// <summary>
+    /// A component that draws text.
+    /// </summary>
     public class BasicText : DrawableGameComponent
     {
         private GameRoot game;
@@ -15,7 +18,8 @@ namespace SpaceShooter.Screens.Components
         /// Score constructor
         /// </summary>
         /// <param name="game"></param>
-        /// <param name="gameScreen"></param>
+        /// <param name="text"></param>
+        /// <param name="position"></param>
         public BasicText(GameRoot game, string text, Vector2 position) : base(game)
         {
             this.game = game;

@@ -5,6 +5,9 @@ using System;
 
 namespace SpaceShooter.Collision
 {
+    /// <summary>
+    /// Manages the collision between the sprites in the game.
+    /// </summary>
     public class CollisionManager : GameComponent
     {
         // Instances of the game and game screen

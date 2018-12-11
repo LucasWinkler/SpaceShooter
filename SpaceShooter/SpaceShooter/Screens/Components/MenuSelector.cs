@@ -42,7 +42,7 @@ namespace SpaceShooter.Screens.Components
         // The positional offset for each menu item
         private const int MENU_ITEM_OFFSET = 64;
 
-        // The selected menu item index
+        /// <summary>The selected menu item index.</summary>
         public int SelectedItem { get; private set; }
 
         /// <summary>

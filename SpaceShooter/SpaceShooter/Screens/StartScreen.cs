@@ -16,9 +16,13 @@ namespace SpaceShooter.Screens
     /// </summary>
     public enum SelectableMenuItems
     {
+        /// <summary>Play.</summary>
         Play,
+        /// <summary>Help.</summary>
         Help,
+        /// <summary>Credits.</summary>
         Credits,
+        /// <summary>Quit.</summary>
         Quit
     }
 

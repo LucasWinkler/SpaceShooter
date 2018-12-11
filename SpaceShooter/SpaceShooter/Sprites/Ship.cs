@@ -5,13 +5,19 @@ using SpaceShooter.Screens;
 
 namespace SpaceShooter.Sprites
 {
+    /// <summary>
+    /// A ship in the game.
+    /// </summary>
     public abstract class Ship : Sprite
     {
-        // The ships shooting sound
+        /// <summary>The ships shooting sound.</summary>
         protected SoundEffect shootingSound;
 
-        // The time that the player hasnt shot.
-        protected float ShootTimer;
+        /// <summary>The ships shooting sound.</summary>
+        protected SoundEffect explosionSound;
+
+        /// <summary>The time that the player hasnt shot..</summary>
+        protected float ShootTimer { get; set; }
 
         /// <summary>Game screen instance.</summary>
         public GameScreen GameScreen { get; }
@@ -22,33 +28,44 @@ namespace SpaceShooter.Sprites
         /// <summary>The ships direction.</summary>
         public Vector2 Direction { get; set; }
 
+        /// <summary>The ships speed.</summary>
+        public float Speed { get; set; }
+
         /// <summary>The ships shooting delay.</summary>
         public float ShootDelay { get; set; }
 
-        /// <summary>The ships health (default is 50).</summary>
+        /// <summary>The ships health.</summary>
         public int Health { get; set; }
 
+        /// <summary>The ships maximum health.</summary>
         public int MaxHealth { get; protected set; }
 
         /// <summary>Returns true if health is greater than zero.</summary>
         public bool IsAlive => Health > 0;
 
         /// <summary>
-        /// Construct the ship object with a texture
+        /// Construct the ship object with a texture.
         /// </summary>
         /// <param name="game"></param>
+        /// <param name="gameScreen"></param>
         public Ship(GameRoot game, GameScreen gameScreen) : base(game)
         {
             this.GameScreen = gameScreen;
+            this.explosionSound = GameRoot.ResourceManager.GetSound("Explosion");
             this.ShootDelay = 0.5f;
             this.MaxHealth = 50;
             this.Health = MaxHealth;
+            this.Speed = 90.0f;
+            this.ShootTimer = ShootDelay;
         }
 
         /// <summary>
         /// Destroy the ship
         /// </summary>
-        public override void Destroy() { }
+        public override void Destroy()
+        {
+            explosionSound.Play(0.09f, 0.0f, 0.0f);
+        }
 
         /// <summary>
         /// Damage the ship
@@ -61,6 +78,7 @@ namespace SpaceShooter.Sprites
             if (!IsAlive) Destroy();
         }
 
+        /// <summary>The method which allows the ship to shoot.</summary>
         protected abstract void Shoot();
 
         /// <summary>

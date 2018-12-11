@@ -2,6 +2,9 @@
 
 namespace SpaceShooter.Utility
 {
+    /// <summary>
+    /// Helps with calculations
+    /// </summary>
     public static class CalculationHelper
     {
         private static Random random = new Random();

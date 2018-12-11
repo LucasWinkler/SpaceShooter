@@ -41,10 +41,10 @@ namespace SpaceShooter.Spawners
 
         // Min/max enemy speed modifiers
         private const float MIN_ENEMY_SPEED_MOD = 95.0f;
-        private const float MAX_ENEMY_SPEED_MOD = 125.0f;
+        private const float MAX_ENEMY_SPEED_MOD = 180.0f;
 
         // The max limit on enemies
-        private const int MAX_ENEMIES = 16;
+        private const int MAX_ENEMIES = 14;
 
         // The spawn rate modifiers
         private const float MIN_SPAWN_RATE = 0.1f;
@@ -53,7 +53,7 @@ namespace SpaceShooter.Spawners
         // The amount of time game time until the difficulty is raised (seconds)
         private const float DIFFICULTY_INCREASE_TIME = 12;
 
-        // The amount of enemies currently on the screen
+        /// <summary>The amount of enemies currently on the screen.</summary>
         public int EnemiesOnScreen { get; set; }
 
         /// <summary>
@@ -61,6 +61,7 @@ namespace SpaceShooter.Spawners
         /// </summary>
         /// <param name="game"></param>
         /// <param name="gameScreen"></param>
+        /// <param name="enemyTextureKeys"></param>
         public EnemySpawner(GameRoot game, GameScreen gameScreen, List<string> enemyTextureKeys) : base(game)
         {
             this.game = game;
@@ -74,9 +75,9 @@ namespace SpaceShooter.Spawners
         /// </summary>
         public void Reset()
         {
-            spawnRate = 1.6f;
-            maxEnemiesOnScreen = 4;
-            enemySpeedModifier = 1f;
+            spawnRate = 1.4f;
+            maxEnemiesOnScreen = 5;
+            enemySpeedModifier = 1.05f;
             spawnTimer = 0.0f;
             EnemiesOnScreen = 0;
             difficultyTimer = 0;
@@ -106,8 +107,8 @@ namespace SpaceShooter.Spawners
                     if (spawnRate > MIN_SPAWN_RATE)
                         spawnRate -= SPAWN_RATE_MOD;
 
-                    enemySpeedModifier += 0.007f;
-                    maxEnemiesOnScreen += 0.5f;
+                    enemySpeedModifier += 0.025f;
+                    maxEnemiesOnScreen += 0.65f;
                     difficultyTimer = 0;
                 }
             }

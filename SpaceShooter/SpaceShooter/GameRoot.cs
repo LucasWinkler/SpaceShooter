@@ -109,6 +109,8 @@ namespace SpaceShooter
                 new Resource(ResourceType.Sound, "PlayerShoot", "SFX/PlayerShoot"),
                 new Resource(ResourceType.Sound, "EnemyShoot", "SFX/EnemyShoot"),
                 new Resource(ResourceType.Sound, "Destroy", "SFX/Destroy"),
+                new Resource(ResourceType.Sound, "Explosion", "SFX/Explosion2"),
+                new Resource(ResourceType.Sound, "Shoot", "SFX/Laser_Shoot16"),
                 #endregion
 
                 #region Music

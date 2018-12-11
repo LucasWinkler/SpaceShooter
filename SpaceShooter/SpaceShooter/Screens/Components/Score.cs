@@ -3,6 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceShooter.Screens.Components
 {
+    /// <summary>
+    /// Component that shows the players score while playing.
+    /// </summary>
     public class Score : DrawableGameComponent
     {
         private GameRoot game;
@@ -30,7 +33,7 @@ namespace SpaceShooter.Screens.Components
         }
 
         /// <summary>
-        /// Loads the font
+        /// Loads the font.
         /// </summary>
         protected override void LoadContent()
         {
@@ -38,14 +41,19 @@ namespace SpaceShooter.Screens.Components
             base.LoadContent();
         }
 
+        /// <summary>
+        /// Updates the score position based on it's length.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             position = new Vector2(GameSettings.GAME_WIDTH - font.MeasureString(ConcatenatedScore).X - OFFSET, OFFSET);
+
             base.Update(gameTime);
         }
 
         /// <summary>
-        /// Draws the score
+        /// Draws the score.
         /// </summary>
         /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)

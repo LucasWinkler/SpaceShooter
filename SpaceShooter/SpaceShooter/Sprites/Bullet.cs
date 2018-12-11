@@ -11,7 +11,7 @@ namespace SpaceShooter.Sprites
         // Game screen instance
         private GameScreen gameScreen;
 
-        // Bullets damage
+        /// <summary>The bullets damage.</summary>
         public int Damage { get; }
 
         /// <summary>Bullets parent (sprite that shot the bullet).</summary>
@@ -24,6 +24,7 @@ namespace SpaceShooter.Sprites
         /// Construct a bullet with a parent.
         /// </summary>
         /// <param name="GameRoot"></param>
+        /// <param name="gameScreen"></param>
         /// <param name="parent"></param>
         public Bullet(GameRoot GameRoot, GameScreen gameScreen, Sprite parent) : base(GameRoot)
         {
@@ -33,12 +34,17 @@ namespace SpaceShooter.Sprites
             this.Velocity = new Vector2(0, -Speed);
             this.Damage = 50;
         }
+
+        /// <summary>
+        /// Reset/remove the bullet.
+        /// </summary>
         public override void Reset()
         {
             gameScreen.ComponentsToRemove.Add(this);
 
             base.Reset();
         }
+
         /// <summary>
         /// Destroys/removes the bullet.
         /// </summary>

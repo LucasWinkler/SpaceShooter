@@ -5,15 +5,15 @@ using SpaceShooter.Utility;
 using System;
 namespace SpaceShooter.Sprites
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Enemy : Ship
     {
         private readonly Random random;
 
-        private const float MIN_SHOOT_DELAY = 1.0f;
-        private const float MAX_SHOOT_DELAY = 2.5f;
-
-        /// <summary>The enemies speed.</summary>
-        public float Speed { get; set; }
+        private const float MIN_SHOOT_DELAY = 0.85f;
+        private const float MAX_SHOOT_DELAY = 1.65f;
 
         /// <summary>
         /// Enemy constructor
@@ -25,10 +25,12 @@ namespace SpaceShooter.Sprites
             this.Texture = GameRoot.ResourceManager.GetTexture("StandardGreenEnemy");
             this.shootingSound = GameRoot.ResourceManager.GetSound("EnemyShoot");
             this.random = new Random();
-            this.Speed = 90.0f;
             this.ShootDelay = 1.2f;
         }
 
+        /// <summary>
+        /// Initialize the enemy.
+        /// </summary>
         public override void Initialize()
         {
             Velocity = new Vector2(0, Speed);
@@ -66,13 +68,12 @@ namespace SpaceShooter.Sprites
             GameScreen.ComponentsToRemove.Add(this);
             GameScreen.EnemySpawner.EnemiesOnScreen--;
 
-            //DropItem();
-
             base.Destroy();
         }
 
-        //private void DropItem() { }
-
+        /// <summary>
+        /// Shoots a bullet from the enemy.
+        /// </summary>
         protected override void Shoot()
         {
             // Shoots as long as the timer has passed the delay
@@ -87,7 +88,7 @@ namespace SpaceShooter.Sprites
 
                 // Modifiy the starting position to be infront of the player and centered
                 startPosition.X += (Texture.Width / 2) - (bullet.Texture.Width / 2);
-                startPosition.Y += bullet.Texture.Height + 10;
+                startPosition.Y += Texture.Height;
 
                 // Give the bullet the new position
                 bullet.Position = startPosition;

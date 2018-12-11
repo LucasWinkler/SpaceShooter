@@ -46,6 +46,9 @@ namespace SpaceShooter.Screens
             base.Initialize();
         }
 
+        /// <summary>
+        /// Adds all the screens components to the games components.
+        /// </summary>
         public void AddScreenComponentsToGameComponents()
         {
             foreach (var component in Components)
@@ -122,6 +125,11 @@ namespace SpaceShooter.Screens
             if (isActive) PlayMusic();
         }
 
+
+        /// <summary>
+        /// Update the screen
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             // Removes any components that should be removed
@@ -140,7 +148,7 @@ namespace SpaceShooter.Screens
 
             ComponentsToRemove.Clear();
 
-
+            // Add new components to the games collection of components so they are managed
             foreach (var component in Components)
             {
                 if (!GameRoot.Components.Contains(component))
@@ -148,7 +156,6 @@ namespace SpaceShooter.Screens
                     GameRoot.Components.Add(component);
                 }
             }
-
 
             base.Update(gameTime);
         }

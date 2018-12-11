@@ -1350,3 +1350,15 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/basicText.spritefont
 
+#begin SFX/Explosion2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/Explosion2.wav
+
+#begin SFX/Laser_Shoot16.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/Laser_Shoot16.wav
+

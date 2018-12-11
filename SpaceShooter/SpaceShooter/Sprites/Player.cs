@@ -28,9 +28,6 @@ namespace SpaceShooter.Sprites
 
         private SoundEffect damageSound;
 
-        /// <summary>The players speed.</summary>
-        public float Speed { get; } = 320.0f;
-
         /// <summary>The players score.</summary>
         public int Score { get; set; }
 
@@ -41,6 +38,8 @@ namespace SpaceShooter.Sprites
         /// Constructs the player object.
         /// </summary>
         /// <param name="game"></param>
+        /// <param name="GameScreen"></param>
+        /// <param name="keyBinds"></param>
         public Player(GameRoot game, GameScreen GameScreen, KeyBinds keyBinds) : base(game, GameScreen)
         {
             this.KeyBinds = keyBinds;
@@ -51,9 +50,10 @@ namespace SpaceShooter.Sprites
             this.Texture = GameRoot.ResourceManager.GetTexture("BluePlayer");
             this.shootingSound = GameRoot.ResourceManager.GetSound("PlayerShoot");
             this.damageSound = GameRoot.ResourceManager.GetSound("Destroy");
-
+       
             this.MaxHealth = 150;
             this.Health = MaxHealth;
+            this.Speed = 450.0f;
         }
 
         /// <summary>
@@ -85,6 +85,8 @@ namespace SpaceShooter.Sprites
         /// </summary>
         public override void Destroy()
         {
+            base.Destroy();
+
             var endScreen = GameRoot.Services.GetService<EndScreen>();
             endScreen.EndScore.Score = Score.ToString();
 
@@ -93,6 +95,10 @@ namespace SpaceShooter.Sprites
             endScreen.SetActive(true);
         }
 
+        /// <summary>
+        /// Damages the ship and plays a sound.
+        /// </summary>
+        /// <param name="damage"></param>
         public override void Damage(int damage)
         {
             damageSound.Play();

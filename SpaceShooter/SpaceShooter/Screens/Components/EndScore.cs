@@ -3,6 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceShooter.Screens.Components
 {
+    /// <summary>
+    /// A component to show score at the end of the game.
+    /// </summary>
     public class EndScore : DrawableGameComponent
     {
         private GameRoot game;
@@ -25,7 +28,6 @@ namespace SpaceShooter.Screens.Components
         /// Score constructor
         /// </summary>
         /// <param name="game"></param>
-        /// <param name="gameScreen"></param>
         public EndScore(GameRoot game) : base(game)
         {
             this.game = game;
