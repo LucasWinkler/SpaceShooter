@@ -28,7 +28,7 @@ namespace SpaceShooter.Screens
         {
             Components.Add(new Title(GameRoot, "CREDITS"));
             Components.Add(new BasicText(GameRoot, "GAME CREATED BY: Lucas Winkler", new Vector2(GameSettings.GAME_CENTER.X, GameSettings.GAME_CENTER.Y)));
-            Components.Add(new BasicText(GameRoot, "ASSETS CREATED BY: Pixel-boy, Kenney and many others.", new Vector2(GameSettings.GAME_CENTER.X, GameSettings.GAME_CENTER.Y + 20)));
+            Components.Add(new BasicText(GameRoot, "ASSETS CREATED BY: Ravenmore, Kenney, SparklinLabs and others.", new Vector2(GameSettings.GAME_CENTER.X, GameSettings.GAME_CENTER.Y + 20)));
 
             base.Initialize();
         }
