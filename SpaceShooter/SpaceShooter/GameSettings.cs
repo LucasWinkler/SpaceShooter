@@ -1,9 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpaceShooter
 {
@@ -12,22 +7,22 @@ namespace SpaceShooter
     /// </summary>
     public class GameSettings
     {
-        /// <value>The title for the game</value>
+        /// <summary>The title for the game</summary>
         public const string GAME_TITLE = "Space Defender";
 
-        /// <value>The games width</value>
+        /// <summary>The games width</summary>
         public const int GAME_WIDTH = 700;
 
-        /// <value>The games height</value>
+        /// <summary>The games height</summary>
         public const int GAME_HEIGHT = 800;
 
-        /// <value>Determines whether the game is fullscreen or windowed</value>
+        /// <summary>Determines whether the game is fullscreen or windowed</summary>
         public const bool IS_FULLSCREEN = false;
 
-        /// <value>Determines whether the mouse is visible in the game</value>
+        /// <summary>Determines whether the mouse is visible in the game</summary>
         public const bool IS_MOUSE_VISIBLE = true;
 
-        /// <value>The games center point</value>
+        /// <summary>The games center point</summary>
         public static Vector2 GAME_CENTER = new Vector2(GAME_WIDTH / 2, GAME_HEIGHT / 2);
     }
 }
