@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace SpaceShooter.Screens.Components
 {
     /// <summary>
-    /// A key that the player uses for input
+    /// Draws a key that the player uses for input
     /// </summary>
     public class InputKey : DrawableGameComponent
     {
@@ -13,7 +13,7 @@ namespace SpaceShooter.Screens.Components
         private Vector2 position;
 
         /// <summary>
-        /// Constructor
+        /// Constructor.
         /// </summary>
         /// <param name="game"></param>
         /// <param name="key"></param>
@@ -26,7 +26,7 @@ namespace SpaceShooter.Screens.Components
         }
 
         /// <summary>
-        /// 
+        /// Draw the key.
         /// </summary>
         /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)

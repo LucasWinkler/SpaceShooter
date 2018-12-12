@@ -17,7 +17,7 @@ namespace SpaceShooter.Screens.Components
         private Texture2D healthBarColour;
 
         // Health bar position
-        private Vector2 healthBarPosition;
+        private Vector2 position;
 
         // Health bar positional offset
         private const int X_OFFSET = 9;
@@ -33,11 +33,12 @@ namespace SpaceShooter.Screens.Components
         /// </summary>
         /// <param name="game"></param>
         /// <param name="gameScreen"></param>
-        public HealthBar(GameRoot game, GameScreen gameScreen) : base(game)
+        /// <param name="position"></param>
+        public HealthBar(GameRoot game, GameScreen gameScreen, Vector2 position) : base(game)
         {
             this.game = game;
             this.gameScreen = gameScreen;
-            this.healthBarPosition = new Vector2(5);
+            this.position = position;
             this.DrawOrder = int.MaxValue;
 
             // Health bar textures
@@ -54,8 +55,8 @@ namespace SpaceShooter.Screens.Components
             var spriteBatch = game.SpriteBatch;
 
             spriteBatch.Begin();
-            spriteBatch.Draw(healthBar, healthBarPosition, Color.White);
-            spriteBatch.Draw(healthBarColour, new Rectangle((int)healthBarPosition.X + X_OFFSET, (int)healthBarPosition.Y + Y_OFFSET, HealthBarWidth, healthBarColour.Height), null, Color.White, 0.0f, Vector2.Zero, SpriteEffects.None, 0);
+            spriteBatch.Draw(healthBar, position, Color.White);
+            spriteBatch.Draw(healthBarColour, new Rectangle((int)position.X + X_OFFSET, (int)position.Y + Y_OFFSET, HealthBarWidth, healthBarColour.Height), null, Color.White, 0.0f, Vector2.Zero, SpriteEffects.None, 0);
             spriteBatch.End();
 
             base.Draw(gameTime);

@@ -111,7 +111,7 @@ namespace SpaceShooter.Sprites
         /// <param name="damage"></param>
         public override void Damage(int damage)
         {
-            damageSound.Play();
+            damageSound.Play(0.5f, 0.0f, 0.0f);
 
             base.Damage(damage);
         }

@@ -34,7 +34,7 @@ namespace SpaceShooter.Screens.Components
         protected override void LoadContent()
         {
             font = game.ResourceManager.GetFont("BasicText");
-            position.X = position.X - (font.MeasureString(text).X / 2);
+            position.X -= font.MeasureString(text).X / 2;
 
             base.LoadContent();
         }
