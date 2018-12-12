@@ -1158,3 +1158,9 @@
 /processorParam:TextureFormat=Color
 /build:GFX/Keys/Keyboard_White_Esc.png
 
+#begin Music/EndMusic.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/EndMusic.ogg
+

@@ -93,12 +93,16 @@ namespace SpaceShooter.Sprites
         {
             base.Destroy();
 
+            // Get the score before GameRoot.HideScreens(); resets the score
             var endScreen = GameRoot.Services.GetService<EndScreen>();
             endScreen.EndScore.Score = Score.ToString();
 
-            // TODO: Play animation, sound effects
+            // Hide all screens
             GameRoot.HideScreens();
+
+            // Show end/game over screen
             endScreen.SetActive(true);
+            endScreen.PlayMusic();
         }
 
         /// <summary>
@@ -216,6 +220,7 @@ namespace SpaceShooter.Sprites
             HandleInput((float)gameTime.ElapsedGameTime.TotalSeconds);
             Move(gameTime);
 
+            // Keep the exhaust animation playing behind the ship
             exhaustAnimation.Position = new Vector2(Position.X + (Texture.Width / 2) - (exhaustAnimation.FrameWidth / 2), Position.Y + Texture.Height - (exhaustAnimation.FrameHeight / 2));
 
             base.Update(gameTime);

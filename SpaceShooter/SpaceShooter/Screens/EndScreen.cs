@@ -29,10 +29,10 @@ namespace SpaceShooter.Screens
         /// </summary>
         public override void Initialize()
         {
-            Components.Add(new ScrollingBackground(GameRoot));
             Components.Add(new Title(GameRoot, "GAME OVER"));
             Components.Add(EndScore = new EndScore(GameRoot));
             Components.Add(new BasicText(GameRoot, "PRESS ESCAPE TO RETURN TO THE MAIN MENU", new Vector2(GameSettings.GAME_WIDTH / 2, 400)));
+            BackgroundMusic = GameRoot.ResourceManager.GetMusic("EndMusic");
 
             base.Initialize();
         }
@@ -47,9 +47,10 @@ namespace SpaceShooter.Screens
 
             if (keyHandler.IsKeyPressed(Keys.Escape))
             {
-                var startScreen = GameRoot.Services.GetService<StartScreen>();
                 GameRoot.HideScreens();
+                var startScreen = GameRoot.Services.GetService<StartScreen>();
                 startScreen.SetActive(true);
+                startScreen.PlayMusic();
             }
 
             base.Update(gameTime);

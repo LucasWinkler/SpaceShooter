@@ -108,8 +108,6 @@ namespace SpaceShooter.Screens
         /// <param name="isActive">Should the screen be active or not.</param>
         public void SetActive(bool isActive)
         {
-            MediaPlayer.Stop();
-
             foreach (var component in Components)
             {
                 if (component is IResetable resetableComponent)
@@ -118,11 +116,12 @@ namespace SpaceShooter.Screens
                 component.Enabled = isActive;
 
                 if (component is DrawableGameComponent drawableComponent)
+                {
                     drawableComponent.Visible = isActive;
+                }
             }
 
             Enabled = Visible = isActive;
-            if (isActive) PlayMusic();
         }
 
 

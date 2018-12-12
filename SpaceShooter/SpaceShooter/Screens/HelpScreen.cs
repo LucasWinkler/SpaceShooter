@@ -19,7 +19,6 @@ namespace SpaceShooter.Screens
         public HelpScreen(GameRoot game) : base(game)
         {
             this.keyHandler = new KeyHandler();
-
         }
 
         /// <summary>
@@ -27,7 +26,7 @@ namespace SpaceShooter.Screens
         /// </summary>
         public override void Initialize()
         {
-            Components.Add(new ScrollingBackground(GameRoot));
+            //Components.Add(new ScrollingBackground(GameRoot));
             Components.Add(new Title(GameRoot, "HELP"));
 
             Components.Add(new BasicText(GameRoot, "MOVEMENT KEYS", new Vector2(GameSettings.GAME_CENTER.X, GameSettings.GAME_CENTER.Y)));

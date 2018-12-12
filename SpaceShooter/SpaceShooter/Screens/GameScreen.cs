@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SpaceShooter.Collision;
 using SpaceShooter.Input;
@@ -29,7 +28,7 @@ namespace SpaceShooter.Screens
         /// <param name="game">The game instance.</param>
         public GameScreen(GameRoot game) : base(game)
         {
-            Components.Add(new ScrollingBackground(GameRoot));
+            //Components.Add(new ScrollingBackground(GameRoot));
             Components.Add(new CollisionManager(GameRoot, this));
             Components.Add(Player = new Player(GameRoot, this, new KeyBinds
             {
@@ -74,9 +73,10 @@ namespace SpaceShooter.Screens
 
             if (keyHandler.IsKeyPressed(Keys.Escape))
             {
-                var startScreen = GameRoot.Services.GetService<StartScreen>();
                 GameRoot.HideScreens();
+                var startScreen = GameRoot.Services.GetService<StartScreen>();
                 startScreen.SetActive(true);
+                startScreen.PlayMusic();
             }
 
             base.Update(gameTime);

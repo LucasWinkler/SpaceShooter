@@ -1,9 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using SpaceShooter.Resources;
 using SpaceShooter.Screens;
-using SpaceShooter.Sprites;
+using SpaceShooter.Screens.Components;
 using System.Collections.Generic;
 
 namespace SpaceShooter
@@ -133,14 +132,18 @@ namespace SpaceShooter
                 #region Music
                 new Resource(ResourceType.Music, "GameMusic", "Music/GameMusic"),
                 new Resource(ResourceType.Music, "MenuMusic", "Music/MenuMusic"),
+                new Resource(ResourceType.Music, "EndMusic", "Music/EndMusic"),
                 #endregion
             });
 
             /* This should probably be called in this.LoadContent()
-             * but DrawableGameComponents.LoadContent() method will be called
+             * but DrawableGameComponent.LoadContent() will be called
              * before this.LoadContent() meaning the resources/content wont be ready.
              */
             ResourceManager.LoadContent();
+
+            // Add a scrolling background behind each screen
+            Components.Add(new ScrollingBackground(this));
 
             // Add the game screen to the game.
             GameScreen gameScreen = new GameScreen(this);
@@ -167,11 +170,13 @@ namespace SpaceShooter
             Components.Add(startScreen);
             Services.AddService(startScreen);
 
-            this.HideScreens();
-            
-            Services.GetService<StartScreen>().SetActive(true);
-
+            // Initialize all components
             base.Initialize();
+
+            // Hide all the screens and set the start screen to the active screen
+            HideScreens();
+            startScreen.SetActive(true);
+            startScreen.PlayMusic();
         }
 
         /// <summary>
@@ -224,6 +229,7 @@ namespace SpaceShooter
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
+
             base.Draw(gameTime);
         }
     }

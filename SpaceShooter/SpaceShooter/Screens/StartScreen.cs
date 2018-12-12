@@ -1,13 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
 using SpaceShooter.Screens.Components;
-using SpaceShooter.Sprites;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpaceShooter.Screens
 {
@@ -53,7 +47,7 @@ namespace SpaceShooter.Screens
         /// </summary>
         public override void Initialize()
         {
-            Components.Add(new ScrollingBackground(GameRoot));
+            //Components.Add(new ScrollingBackground(GameRoot));
             Components.Add(new Title(GameRoot, GameSettings.GAME_TITLE));
             Components.Add(new MenuSelector(GameRoot, menuItems, new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2)));
             BackgroundMusic = GameRoot.ResourceManager.GetMusic("MenuMusic");

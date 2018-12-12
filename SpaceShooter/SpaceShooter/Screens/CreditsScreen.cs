@@ -26,11 +26,9 @@ namespace SpaceShooter.Screens
         /// </summary>
         public override void Initialize()
         {
-            Components.Add(new ScrollingBackground(GameRoot));
             Components.Add(new Title(GameRoot, "CREDITS"));
             Components.Add(new BasicText(GameRoot, "GAME CREATED BY: Lucas Winkler", new Vector2(GameSettings.GAME_CENTER.X, GameSettings.GAME_CENTER.Y)));
             Components.Add(new BasicText(GameRoot, "ASSETS CREATED BY: Pixel-boy, Kenney and many others.", new Vector2(GameSettings.GAME_CENTER.X, GameSettings.GAME_CENTER.Y + 20)));
-            //BackgroundMusic = GameRoot.ResourceManager.GetMusic("MenuMusic");
 
             base.Initialize();
         }

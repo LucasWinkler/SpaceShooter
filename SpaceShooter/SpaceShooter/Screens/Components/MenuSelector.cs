@@ -2,11 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SpaceShooter.Input;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpaceShooter.Screens.Components
 {
@@ -81,7 +77,9 @@ namespace SpaceShooter.Screens.Components
             switch ((SelectableMenuItems)SelectedItem)
             {
                 case SelectableMenuItems.Play:
-                    game.Services.GetService<GameScreen>().SetActive(true);
+                    var playScreen = game.Services.GetService<GameScreen>();
+                    playScreen.SetActive(true);
+                    playScreen.PlayMusic();
                     break;
                 case SelectableMenuItems.Help:
                     game.Services.GetService<HelpScreen>().SetActive(true);
@@ -94,7 +92,9 @@ namespace SpaceShooter.Screens.Components
                     break;
                 default:
                     // Switch to the start screen as a backup
-                    game.Services.GetService<StartScreen>().SetActive(true);
+                    var startScreen = game.Services.GetService<StartScreen>();
+                    startScreen.SetActive(true);
+                    startScreen.PlayMusic();
                     break;
             }
         }
