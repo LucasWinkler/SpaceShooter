@@ -86,6 +86,11 @@ namespace SpaceShooter
                 new Resource(ResourceType.Texture, "SmallPlasmaBullet", "GFX/Bullets/Plasma_Small"),
                 #endregion
 
+                #region Animations
+                new Resource(ResourceType.Texture, "ExhaustAnimation", "GFX/Exhaust/exhaustSheet"),
+                new Resource(ResourceType.Texture, "ExplosionAnimation", "GFX/Explosions/explosionSheet"),
+                #endregion
+
                 #region HUD
                 new Resource(ResourceType.Texture, "HealthBar", "GFX/HUD/HealthBar"),
                 new Resource(ResourceType.Texture, "HealthBarColour", "GFX/HUD/HealthBarColor"),
@@ -96,7 +101,6 @@ namespace SpaceShooter
                 new Resource(ResourceType.Font, "SelectedMenuItem", "Fonts/highlightedMenuItemFont"),
                 new Resource(ResourceType.Font, "Title", "Fonts/titleFont"),
                 new Resource(ResourceType.Font, "Score", "Fonts/scoreFont"),
-                new Resource(ResourceType.Font, "EndScore", "Fonts/endScoreFont"),
                 new Resource(ResourceType.Font, "BasicText", "Fonts/basicText"),
                 #endregion
 

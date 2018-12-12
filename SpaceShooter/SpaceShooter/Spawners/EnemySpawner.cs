@@ -40,8 +40,8 @@ namespace SpaceShooter.Spawners
         private float enemySpeedModifier;
 
         // Min/max enemy speed modifiers
-        private const float MIN_ENEMY_SPEED_MOD = 95.0f;
-        private const float MAX_ENEMY_SPEED_MOD = 180.0f;
+        private const float MIN_ENEMY_SPEED_MOD = 105.0f;
+        private const float MAX_ENEMY_SPEED_MOD = 190.0f;
 
         // The max limit on enemies
         private const int MAX_ENEMIES = 14;

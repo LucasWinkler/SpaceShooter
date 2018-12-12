@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
+using SpaceShooter.Animations;
 using SpaceShooter.Input;
 using SpaceShooter.Screens;
 using System;
@@ -27,6 +29,7 @@ namespace SpaceShooter.Sprites
         private KeyHandler keyHandler;
 
         private SoundEffect damageSound;
+        private Animation exhaustAnimation;
 
         /// <summary>The players score.</summary>
         public int Score { get; set; }
@@ -50,10 +53,12 @@ namespace SpaceShooter.Sprites
             this.Texture = GameRoot.ResourceManager.GetTexture("BluePlayer");
             this.shootingSound = GameRoot.ResourceManager.GetSound("PlayerShoot");
             this.damageSound = GameRoot.ResourceManager.GetSound("Destroy");
-       
+
             this.MaxHealth = 150;
             this.Health = MaxHealth;
             this.Speed = 450.0f;
+            this.exhaustAnimation = new Animation(GameRoot, GameScreen, GameRoot.ResourceManager.GetTexture("ExhaustAnimation"), 0.075f, true);
+            this.GameScreen.Components.Add(exhaustAnimation);
         }
 
         /// <summary>
@@ -77,7 +82,8 @@ namespace SpaceShooter.Sprites
             Velocity = Vector2.Zero;
             ShootTimer = 0.0f;
             Health = MaxHealth;
-            Score = 0;   
+            Score = 0;
+
         }
 
         /// <summary>
@@ -138,7 +144,7 @@ namespace SpaceShooter.Sprites
             if (ShootTimer >= ShootDelay)
             {
                 // Create a new bullet and give it the game instance as well as the player as a parent
-                var bullet = new Bullet(GameRoot, GameScreen, this);
+                var bullet = new Bullet(GameRoot, GameScreen, this, SpriteEffects.None);
 
                 // Set the startPosition to the players position
                 var startPosition = Position;
@@ -209,6 +215,8 @@ namespace SpaceShooter.Sprites
         {
             HandleInput((float)gameTime.ElapsedGameTime.TotalSeconds);
             Move(gameTime);
+
+            exhaustAnimation.Position = new Vector2(Position.X + (Texture.Width / 2) - (exhaustAnimation.FrameWidth / 2), Position.Y + Texture.Height - (exhaustAnimation.FrameHeight / 2));
 
             base.Update(gameTime);
         }

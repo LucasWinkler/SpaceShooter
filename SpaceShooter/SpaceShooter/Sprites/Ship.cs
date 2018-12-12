@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
+using SpaceShooter.Animations;
 using SpaceShooter.Screens;
 
 namespace SpaceShooter.Sprites
@@ -10,6 +11,8 @@ namespace SpaceShooter.Sprites
     /// </summary>
     public abstract class Ship : Sprite
     {
+        private Animation explosionAnimation;
+
         /// <summary>The ships shooting sound.</summary>
         protected SoundEffect shootingSound;
 
@@ -57,6 +60,7 @@ namespace SpaceShooter.Sprites
             this.Health = MaxHealth;
             this.Speed = 90.0f;
             this.ShootTimer = ShootDelay;
+            this.explosionAnimation = new Animation(GameRoot, GameScreen,  GameRoot.ResourceManager.GetTexture("ExplosionAnimation"), 0.01f, false);
         }
 
         /// <summary>
@@ -64,7 +68,9 @@ namespace SpaceShooter.Sprites
         /// </summary>
         public override void Destroy()
         {
-            explosionSound.Play(0.09f, 0.0f, 0.0f);
+            explosionSound.Play(0.08f, 0.0f, 0.0f);
+            explosionAnimation.Position = Position;
+            GameScreen.Components.Add(explosionAnimation);
         }
 
         /// <summary>

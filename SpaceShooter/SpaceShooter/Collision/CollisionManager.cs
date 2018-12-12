@@ -72,7 +72,7 @@ namespace SpaceShooter.Collision
         /// </summary>
         private void CheckOutOfScreenSprites()
         {
-            foreach (var component in gameScreen.Components)
+            foreach (var component in gameScreen.Components.ToArray())
             {
                 if (component is Bullet bullet)
                 {
@@ -99,11 +99,11 @@ namespace SpaceShooter.Collision
         /// </summary>
         private void CheckBulletCollision()
         {
-            foreach (var component in gameScreen.Components)
+            foreach (var component in gameScreen.Components.ToArray())
             {
                 if (component is Bullet bullet)
                 {
-                    foreach (var otherComponent in gameScreen.Components)
+                    foreach (var otherComponent in gameScreen.Components.ToArray())
                     {
                         if (otherComponent is Ship ship)
                         {
@@ -140,11 +140,11 @@ namespace SpaceShooter.Collision
         /// </summary>
         private void CheckShipCollision()
         {
-            foreach (var component in gameScreen.Components)
+            foreach (var component in gameScreen.Components.ToArray())
             {
                 if (component is Ship ship)
                 {
-                    foreach (var otherComponent in gameScreen.Components)
+                    foreach (var otherComponent in gameScreen.Components.ToArray())
                     {
                         if (otherComponent is Ship otherShip)
                         {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
 using SpaceShooter.Screens;
 using SpaceShooter.Utility;
 using System;
@@ -80,7 +81,7 @@ namespace SpaceShooter.Sprites
             if (ShootTimer >= ShootDelay)
             {
                 // Create a new bullet and give it the game instance as well as the player as a parent
-                var bullet = new Bullet(GameRoot, GameScreen, this);
+                var bullet = new Bullet(GameRoot, GameScreen, this, SpriteEffects.FlipVertically);
 
                 bullet.Velocity = -bullet.Velocity;
 
@@ -112,8 +113,7 @@ namespace SpaceShooter.Sprites
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-
-            this.Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Shoot();
 
             base.Update(gameTime);
