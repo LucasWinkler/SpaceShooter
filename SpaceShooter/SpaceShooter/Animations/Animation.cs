@@ -62,7 +62,16 @@ namespace SpaceShooter.Animations
         /// </summary>
         public void Reset()
         {
-            gameScreen.ComponentsToRemove.Add(this);
+            if (ShouldLoop)
+            {
+                this.Visible = false;
+                this.Enabled = false;
+            }
+            else
+            {
+                gameScreen.ComponentsToRemove.Add(this);
+            }
+            
         }
 
         /// <summary>

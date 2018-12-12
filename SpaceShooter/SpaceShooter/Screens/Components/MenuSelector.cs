@@ -84,12 +84,10 @@ namespace SpaceShooter.Screens.Components
                     game.Services.GetService<GameScreen>().SetActive(true);
                     break;
                 case SelectableMenuItems.Help:
-                    // Switch to the start screen as a backup
-                    game.Services.GetService<StartScreen>().SetActive(true);
+                    game.Services.GetService<HelpScreen>().SetActive(true);
                     break;
                 case SelectableMenuItems.Credits:
-                    // Switch to the start screen as a backup
-                    game.Services.GetService<StartScreen>().SetActive(true);
+                    game.Services.GetService<CreditsScreen>().SetActive(true);
                     break;
                 case SelectableMenuItems.Quit:
                     game.Exit();

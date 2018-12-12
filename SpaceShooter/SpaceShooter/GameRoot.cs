@@ -147,10 +147,20 @@ namespace SpaceShooter
             Components.Add(gameScreen);
             Services.AddService(gameScreen);
 
-            // Add the start screen to the game.
+            // Add the end screen to the game.
             EndScreen endScreen = new EndScreen(this);
             Components.Add(endScreen);
             Services.AddService(endScreen);
+
+            // Add the credits screen to the game.
+            CreditsScreen creditsScreen = new CreditsScreen(this);
+            Components.Add(creditsScreen);
+            Services.AddService(creditsScreen);
+
+            // Add the help screen to the game.
+            HelpScreen helpScreen = new HelpScreen(this);
+            Components.Add(helpScreen);
+            Services.AddService(helpScreen);
 
             // Add the start screen to the game.
             StartScreen startScreen = new StartScreen(this);
