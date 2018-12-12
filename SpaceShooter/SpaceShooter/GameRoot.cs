@@ -96,17 +96,30 @@ namespace SpaceShooter
                 new Resource(ResourceType.Texture, "HealthBarColour", "GFX/HUD/HealthBarColor"),
                 #endregion
 
+                #region Keys
+                new Resource(ResourceType.Texture, "BlackWKey", "GFX/Keys/Keyboard_Black_W"),
+                new Resource(ResourceType.Texture, "BlackAKey", "GFX/Keys/Keyboard_Black_A"),
+                new Resource(ResourceType.Texture, "BlackSKey", "GFX/Keys/Keyboard_Black_S"),
+                new Resource(ResourceType.Texture, "BlackDKey", "GFX/Keys/Keyboard_Black_D"),
+                new Resource(ResourceType.Texture, "BlackSpaceKey", "GFX/Keys/Keyboard_Black_Space"),
+                new Resource(ResourceType.Texture, "BlackPKey", "GFX/Keys/Keyboard_Black_P"),
+                new Resource(ResourceType.Texture, "BlackEscKey", "GFX/Keys/Keyboard_Black_Esc"),
+
+                new Resource(ResourceType.Texture, "WhiteWKey", "GFX/Keys/Keyboard_White_W"),
+                new Resource(ResourceType.Texture, "WhiteAKey", "GFX/Keys/Keyboard_White_A"),
+                new Resource(ResourceType.Texture, "WhiteSKey", "GFX/Keys/Keyboard_White_S"),
+                new Resource(ResourceType.Texture, "WhiteDKey", "GFX/Keys/Keyboard_White_D"),
+                new Resource(ResourceType.Texture, "WhiteSpaceKey", "GFX/Keys/Keyboard_White_Space"),
+                new Resource(ResourceType.Texture, "WhitePKey", "GFX/Keys/Keyboard_White_P"),
+                new Resource(ResourceType.Texture, "WhiteEscKey", "GFX/Keys/Keyboard_White_Esc"),
+                #endregion
+
                 #region Fonts
                 new Resource(ResourceType.Font, "StandardMenuItem", "Fonts/standardMenuItemFont"),
                 new Resource(ResourceType.Font, "SelectedMenuItem", "Fonts/highlightedMenuItemFont"),
                 new Resource(ResourceType.Font, "Title", "Fonts/titleFont"),
                 new Resource(ResourceType.Font, "Score", "Fonts/scoreFont"),
                 new Resource(ResourceType.Font, "BasicText", "Fonts/basicText"),
-                #endregion
-
-                #region Powerups
-                new Resource(ResourceType.Texture, "HealthPowerup", "GFX/Powerups/Powerup_Health"),
-                new Resource(ResourceType.Texture, "ShieldPowerup", "GFX/Powerups/Powerup_Shields"),
                 #endregion
 
                 #region Sound Effects
